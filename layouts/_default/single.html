@@ -1,7 +1,11 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
+ <h1>{{ .Title }}</h1>
 
 
+  
   {{ .Content }}
+
+  <h3> _default/single.html</h3>
   {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+
 {{ end }}

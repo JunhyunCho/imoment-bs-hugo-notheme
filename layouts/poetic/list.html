@@ -1,0 +1,88 @@
+{{ define "main"}}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="text-center">
+        {{/* <h1> {{ .Site.Title }} </h1> */}}
+        {{/* <h2 class="text-secondary h3"> {{ .Params.subtitle }} </h2> */}}
+      </div>
+      {{/* {{ .Content }} */}}
+    </div>
+  </div>
+
+  <div id="map" style="height: 300px; max-width: 600px"> </div>
+
+
+  <br>
+  <div id="myCarousel" class="carousel slide" style="max-width: 600px">
+    <div class="carousel-inner">
+
+      {{ $count := 0 }}
+
+      <script> sites = []; </script>
+
+      {{ range .Pages }}
+
+      <script>
+        sites.push({
+          title: {{ .Params.title }},
+          position : {lat: {{ .Params.lat }},lng : {{ .Params.lng }} },
+        });
+      </script>
+      {{/* <h3><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2> */}}
+
+        {{ $carousel_class := "" }}
+        {{ if eq $count 0 }}
+        {{ $carousel_class = "carousel-item active" }}
+        {{ else }}
+        {{ $carousel_class = "carousel-item" }}
+        {{ end }}
+
+
+        <div class={{$carousel_class}} id={{.Params.title}} lat = {{.Params.lat}} lng = {{.Params.lng}}>
+          <a href={{.RelPermalink}} class="text-decoration-none">
+            <div class="card position-relative">
+              <img src={{ printf "%s%s" .RelPermalink "/thumb.png" }} class="card-img" alt="...">
+              <div class="overlay"> </div>
+              <h1 class="card-title text-center">{{.Params.title}}</h1>
+            </div>
+          </a>
+        </div>
+
+        {{/*  {{ print $count " " .RelPermalink " " .Params.title " " $carousel_class}}  */}}
+        {{ $count = add $count 1 }}
+
+        {{ end }}
+
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+
+  </div>
+
+
+</div>
+
+<script>
+  (g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })({
+
+    key: "AIzaSyAYcjpCTG8LexYskRI6r7aWVNW42h9hIE4",
+    v: "weekly",
+    // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
+    // Add other bootstrap parameters as needed, using camel case.
+  });
+
+
+</script>
+
+{{/*  <script type="module" src="js/main.js">  </script>  */}}
+{{ partialCached "head/js.html" . }}
+
+{{ end }}
