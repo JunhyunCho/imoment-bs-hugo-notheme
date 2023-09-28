@@ -1,10 +1,9 @@
 {{ define "main" }}
   <h1>{{ .Title }}</h1>
-  {{ .Content }}
-  <h1> layouts/_default/list.html </h1>
+  {{/*  {{ .Content }}  */}}
   {{ range .Pages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-    <h3> _default/list.html </h3>
+  <br>
+    <h2><a href="{{ .RelPermalink }}" style="color: black">{{ .LinkTitle }}</a></h2>
     {{ .Summary }}
   {{ end }}
 {{ end }}
