@@ -22,7 +22,7 @@ myCarousel.addEventListener('slide.bs.carousel', function (event) {
     //console.log(event.relatedTarget.id);
     map.panTo(pinLocations[index].position);
     pinLocations[index].marker.dropMarkerAnimation();
-    
+
 
 });
 
@@ -46,10 +46,10 @@ async function initMap() {
         gestureHandling: "greedy",
         mapId: "bf275fc383452ffe",
     });
- 
+
 
     pinLocations = sites;
-    
+
 
     // Create an info window to share between markers.
     const infoWindow = new InfoWindow();
@@ -71,7 +71,7 @@ async function initMap() {
 
         function buildContent(property) {
             const content = document.createElement("div");
-            var temp_address = ".." + property.link + "pin.png"; //현재는 /poetic/yoram/ 같은 폴더이므로 yoram/pin.png를 얻기 위해 ..를 붙임
+            var temp_address = "../.." + property.link + "pin.png"; //현재는 /poetic/yoram/ 같은 폴더이므로 yoram/pin.png를 얻기 위해 ..를 붙임
 
             content.innerHTML = `
                 <div class="icon">
@@ -92,7 +92,7 @@ async function initMap() {
             infoWindow.open(marker.map, marker);
             //console.log("Marker clicked", target, latLng.toJSON());
             //move center of the map to latLng
-            map.panTo(latLng);  
+            map.panTo(latLng);
             //slide carousel card to the right index
             carousel.to(i);
             console.log("carousel index", i);
@@ -100,7 +100,7 @@ async function initMap() {
 
         //add marker animation
         dropMarkerAnimation();
-         
+
 
         function dropMarkerAnimation() {
             const intersectionObserver = new IntersectionObserver((entries) => {
