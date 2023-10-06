@@ -15,17 +15,18 @@
 <nav class="navbar navbar-expand-xxl navbar-light bg-white">
   <div class="container-fluid">
     {{ if not .IsHome }}
-    <a class="navbar-brand fw-bold fs-2" href="#"> {{ .Parent.Name }} </a>
+    <a class="navbar-brand fw-bold " href="#"> Poetic Map Project - {{ site.Title }} </a>
     {{ else }}
-    <a class="navbar-brand fw-bold fs-2" href="/"> {{ site.Title }} </a>
+    <a class="navbar-brand fw-bold " href="/"> {{ site.Title }} </a>
     {{ end }}
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-      aria-controls="offcanvasRight">
+      aria-controls="offcanvasRight" style="border: 0">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
+      style="max-width: 50%;">
       <div class="offcanvas-header">
         <h5 id="offcanvasRightLabel">Menu</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>

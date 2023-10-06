@@ -8,8 +8,6 @@
         {{/* <h2 class="text-secondary h3"> {{ .Params.subtitle }} </h2> */}}
         {{/* {{ .Content }} */}}
 
-        <h1> list with customList </h1>
-
         <div id="map" style="height: 300px"> </div>
 
         <br>
@@ -43,10 +41,10 @@
 
               <div class={{$carousel_class}} id={{.Params.title}} lat={{.Params.lat}} lng={{.Params.lng}}>
                 <a href={{.RelPermalink}} class="text-decoration-none">
-                  <div class="card position-relative">
+                  <div class="card position-relative" style="height: 10rem;">
                     <img src={{ printf "%s%s" .RelPermalink "/thumb.png" }} class="card-img" alt="...">
                     <div class="overlay"> </div>
-                    <h1 class="display-3 card-title text-center">{{.Params.title}}</h1>
+                    <h1 class="display-3 fw-light card-title text-center">{{.Params.title}}</h1>
                   </div>
                 </a>
               </div>

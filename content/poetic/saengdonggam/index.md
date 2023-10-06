@@ -5,6 +5,8 @@ draft = false
 tags = ['생동감', '시험태그1', '시험태그3']
 lat = 37.581
 lng = 126.966
+locationLarge = '서울시'
+locationSmall = '연희동'
 +++
 
 생동감은 어쩌고 저쩌고 

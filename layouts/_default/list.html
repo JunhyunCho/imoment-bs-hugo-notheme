@@ -1,9 +1,9 @@
 {{ define "main" }}
-  <h1>{{ .Title }} _default/list.html</h1>
-  {{/*  {{ .Content }}  */}}
-  {{ range .Pages }}
-  <br>
-    <h2><a href="{{ .RelPermalink }}" style="color: black">{{ .LinkTitle }}</a></h2>
-    {{ .Summary }}
-  {{ end }}
+<h1>{{ .Title }} _default/list.html</h1>
+{{/* {{ .Content }} */}}
+{{ range .Pages }}
+<br>
+<h2><a href="{{ .RelPermalink }}" style="color: black">{{ .LinkTitle }}</a></h2>
+{{/* {{ .Summary }} */}}
+{{ end }}
 {{ end }}

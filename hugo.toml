@@ -3,10 +3,20 @@ languageCode = 'en-us'
 title = 'iMoment'
 
 [outputFormats]
-  [outputFormats.CustomList]
+  [outputFormats.MapList]
     mediaType = "text/html"
-    baseName = "customlist"
+    baseName = "maplist"
+    isHTML = true
+
+  [outputFormats.KeywordList]
+    mediaType = "text/html"
+    baseName = "keywordlist"
+    isHTML = true
+
+  [outputFormats.LocationList]
+    mediaType = "text/html"
+    baseName = "locationlist"
     isHTML = true
 
 [outputs]
-  section = ["HTML", "CustomList"]
+  section = ["HTML", "MapList", "KeywordList", "LocationList"]

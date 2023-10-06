@@ -5,6 +5,8 @@ draft = false
 tags = ['고백','시험태그1', '시험태그2']
 lat = 37.559
 lng = 126.904 
+locationLarge = '경기도'
+locationSmall = '과천시'
 +++
 
 고백은 어쩌고 저쩌고 

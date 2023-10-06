@@ -5,6 +5,8 @@ draft = false
 tags = ['요람', '시험태그2', '시험태그3']
 lat = 37.486
 lng = 126.991
+locationLarge = '서울시'
+locationSmall = '신림동'
 +++
 
 

@@ -1,0 +1,22 @@
+{{ define "main"}}
+
+<div class="container-md justify-flex">
+  <div class="row">
+    <div class="col">
+      <h1 class="fw-bold"> Keywords </h1>
+      <br>
+      {{ range .Pages }}
+      <h3 class="fw-normal pb-2"><a href="{{ .RelPermalink }}" style="color: black">{{ .LinkTitle }}</a></h3>
+      {{ end }}
+    </div>
+  </div>
+
+
+</div>
+
+
+{{/*
+
+{{ partialCached "head/js.html" . }}*/}}
+
+{{ end }}
