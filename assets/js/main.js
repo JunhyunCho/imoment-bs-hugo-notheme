@@ -92,7 +92,7 @@ async function initMap() {
             infoWindow.open(marker.map, marker);
             //console.log("Marker clicked", target, latLng.toJSON());
             //move center of the map to latLng
-            map.panTo(latLng);
+            map.panTo(latLng);  
             //slide carousel card to the right index
             carousel.to(i);
             console.log("carousel index", i);
@@ -100,7 +100,7 @@ async function initMap() {
 
         //add marker animation
         dropMarkerAnimation();
-     
+         
 
         function dropMarkerAnimation() {
             const intersectionObserver = new IntersectionObserver((entries) => {

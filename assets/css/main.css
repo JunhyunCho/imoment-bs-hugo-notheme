@@ -4,6 +4,10 @@ body {
   line-height: 1.5;
   margin: 1rem;
   max-width: 768px;
+  /* display:flex;
+  justify-content: center;
+  flex-direction : column; */
+  
 }
 
 header {
@@ -17,7 +21,7 @@ footer {
 }
 
 a {
-  color: #00e;
+  color: #222;
   text-decoration: none;
 }
 
@@ -55,6 +59,8 @@ a {
   animation: drop 0.3s linear forwards var(--delay-time);
 }
 
+
+/* card carousel */
 
 .card {
   width: 600px;

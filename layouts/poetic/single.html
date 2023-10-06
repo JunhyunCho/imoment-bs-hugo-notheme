@@ -3,23 +3,29 @@
 
 
 <div class="container">
-  <h1>{{ .Title }}</h1>
-
-  <div id="map" style="height: 300px; max-width: 800px"> </div>
-
-  <style>
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-  </style>
-
-  {{ .Content }}
+  <div class="row ">
+    <div class="col">
 
 
-  <h3> poetic/single.html</h3>
-  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+      <h1>{{ .Title }}</h1>
 
+      <div id="map" style="height: 300px; "> </div>
+
+      <style>
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+      </style>
+ 
+      {{ .Content }}
+
+
+      <h3> [test] poetic/single.html</h3>
+      {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+
+    </div>
+</div>
 </div>
 
 <script>

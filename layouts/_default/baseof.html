@@ -3,9 +3,12 @@
 <head>
   {{ partial "head.html" . }}
 </head>
-<body style="max-width: 600px;"> 
+<body>
+
+<!-- </body>style="max-width: 600px;"> -->
+
   <header>
-    {{ partial "header.html" . }}
+    {{ partial "header/site-header.html" . }}
   </header>
   <main>
     {{ block "main" . }}{{ end }}

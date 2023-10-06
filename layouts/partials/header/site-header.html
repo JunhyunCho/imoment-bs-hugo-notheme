@@ -1,6 +1,6 @@
-{{/* <h1>{{ site.Title }} partials/header.html</h1>
-{{ partial "menu.html" (dict "menuID" "main" "page" .) }}
-*/}}
+{{/*
+<h1>{{ site.Title }} partials/header.html</h1>
+{{ partial "menu.html" (dict "menuID" "main" "page" .) }} */}}
 
 <!--  <div class="container-fluid bg-secondary">
     <div class="row">
@@ -15,20 +15,35 @@
 <nav class="navbar navbar-expand-xxl navbar-light bg-white">
   <div class="container-fluid">
     {{ if not .IsHome }}
-    <a class="navbar-brand fw-bold fs-2" href="#"> {{ .Title }} </a>
+    <a class="navbar-brand fw-bold fs-2" href="/"> {{ .Title }} </a>
     {{ else }}
     <a class="navbar-brand fw-bold fs-2" href="/"> {{ site.Title }} </a>
     {{ end }}
-    
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-      aria-controls="offcanvasRight">
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasRight"
+      aria-controls="offcanvasRight"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div
+      class="offcanvas offcanvas-end"
+      tabindex="-1"
+      id="offcanvasRight"
+      aria-labelledby="offcanvasRightLabel"
+    >
       <div class="offcanvas-header">
         <h5 id="offcanvasRightLabel">Menu</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close text-reset"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="offcanvas-body">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">

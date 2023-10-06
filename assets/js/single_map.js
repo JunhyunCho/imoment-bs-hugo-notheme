@@ -26,7 +26,7 @@ async function initMap() {
         "marker",
     );
     map = new Map(document.getElementById("map"), {
-        zoom: 10,
+        zoom: 11,
         center: tourStops[0].position, //{ lat: 37.535, lng: 127.0035 },
         disableDefaultUI: true,
         gestureHandling: "greedy",
