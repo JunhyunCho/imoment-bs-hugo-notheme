@@ -2,12 +2,12 @@ body {
   color: #222;
   font-family: sans-serif;
   line-height: 1.5;
-  margin: 1rem;
-  max-width: 768px;
+  margin: 1rem auto;
+  max-width: 800px;
   /* display:flex;
   justify-content: center;
   flex-direction : column; */
-  
+
 }
 
 header {
@@ -35,26 +35,32 @@ a {
     transform: translateY(-20px) scaleY(0.9);
     opacity: 0;
   }
+
   5% {
     opacity: 0.7;
   }
+
   50% {
     transform: translateY(0px) scaleY(1);
     opacity: 1;
   }
+
   65% {
     transform: translateY(-17px) scaleY(0.9);
     opacity: 1;
   }
+
   75% {
     transform: translateY(-22px) scaleY(0.9);
     opacity: 1;
   }
+
   100% {
     transform: translateY(0px) scaleY(1);
     opacity: 1;
   }
 }
+
 .drop {
   animation: drop 0.3s linear forwards var(--delay-time);
 }
@@ -64,15 +70,19 @@ a {
 
 .card {
   width: 600px;
-  max-width: 100%; /* Responsive */
+  max-width: 100%;
+  /* Responsive */
   height: 300px;
-  overflow: hidden; /* Crop image */
+  overflow: hidden;
+  /* Crop image */
 }
+
 .card-img {
   object-fit: cover;
   height: 100%;
   width: 100%;
 }
+
 .overlay {
   position: absolute;
   top: 0;
@@ -81,6 +91,7 @@ a {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
 }
+
 .card-title {
   position: absolute;
   top: 50%;
@@ -89,4 +100,3 @@ a {
   color: white;
   opacity: 0.7;
 }
-
