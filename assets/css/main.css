@@ -3,8 +3,8 @@ body {
   font-family: sans-serif;
   line-height: 1.5;
   margin: 1rem auto;
-  max-width: 800px;
-  /* display:flex;
+  max-width: 600px;
+  /*display:flex;
   justify-content: center;
   flex-direction : column; */
 
@@ -26,7 +26,8 @@ a {
 }
 
 #map {
-  height: 100%;
+  height: 300px;
+  width: 100%;
 }
 
 
@@ -62,8 +63,35 @@ a {
 }
 
 .drop {
-  animation: drop 0.3s linear forwards var(--delay-time);
+  animation: drop 0.9s linear forwards var(--delay-time) infinite;
 }
+
+
+
+@keyframes breath {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+
+
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+
+  100% {
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+}
+
+.breath {
+  animation: breath 5s linear forwards infinite;
+}
+
+
 
 
 /* card carousel */

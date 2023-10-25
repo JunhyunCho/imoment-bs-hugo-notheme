@@ -1,3 +1,6 @@
+
+import { MarkerClusterer } from "https://cdn.skypack.dev/@googlemaps/markerclusterer@2.3.1";
+
 console.log('/assets/js/main.js ');
 
 //get Elements with class name "carousel-item active"
@@ -55,7 +58,8 @@ async function initMap() {
     const infoWindow = new InfoWindow();
 
     // Create the markers.
-    pinLocations.forEach(({ position, title }, i) => {
+    const markers = pinLocations.map(({ position, title }, i) => {
+        //pinLocations.forEach(({ position, title }, i) => {
         const pin = new PinElement({
             glyph: `${i + 1}`,
         });
@@ -88,14 +92,14 @@ async function initMap() {
             const { target } = domEvent;
 
             infoWindow.close();
-            infoWindow.setContent(marker.title);
-            infoWindow.open(marker.map, marker);
+            //infoWindow.setContent(marker.title);
+            //infoWindow.open(marker.map, marker);
             //console.log("Marker clicked", target, latLng.toJSON());
             //move center of the map to latLng
             map.panTo(latLng);
             //slide carousel card to the right index
             carousel.to(i);
-            console.log("carousel index", i);
+            //console.log("carousel index", i);
         });
 
         //add marker animation
@@ -106,7 +110,7 @@ async function initMap() {
             const intersectionObserver = new IntersectionObserver((entries) => {
                 for (const entry of entries) {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add("drop");
+                        entry.target.classList.add("breath");
                         intersectionObserver.unobserve(entry.target);
                     }
                 }
@@ -116,7 +120,7 @@ async function initMap() {
 
             content.style.opacity = "0";
             content.addEventListener("animationend", (event) => {
-                content.classList.remove("drop");
+                content.classList.remove("breath");
                 content.style.opacity = "1";
 
                 //content.style.setProperty("--delay-time", 1 + "s");
@@ -127,10 +131,12 @@ async function initMap() {
             intersectionObserver.observe(content);
         }
 
-
         marker.dropMarkerAnimation = dropMarkerAnimation;
+        return marker;
 
     });
+
+    const markerCluster = new MarkerClusterer({ markers, map });
 
     // const parser = new DOMParser();
     // // A marker with a custom inline SVG.

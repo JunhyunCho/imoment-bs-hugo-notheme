@@ -16,4 +16,8 @@ Lorem ipsum blah blah
 
 ![yoram](thumb.png)
 
+![yoram](thumb.png)
+
+![yoram](thumb.png)
+
 {{< youtube ENsbl_-jdGc >}}
