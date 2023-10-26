@@ -30,6 +30,7 @@ a {
   width: 100%;
 }
 
+/* 
 
 @keyframes drop {
   0% {
@@ -65,30 +66,30 @@ a {
 .drop {
   animation: drop 0.9s linear forwards var(--delay-time) infinite;
 }
-
+ */
 
 
 @keyframes breath {
   0% {
-    transform: scale(0.5);
+    transform: scale(0.8);
     opacity: 0.5;
   }
 
 
   50% {
     transform: scale(1);
-    opacity: 1;
+    opacity: 0.8;
   }
 
 
   100% {
-    transform: scale(0.5);
+    transform: scale(0.8);
     opacity: 0.5;
   }
 }
 
 .breath {
-  animation: breath 5s linear forwards infinite;
+  animation: breath 3s ease-in-out forwards infinite;
 }
 
 

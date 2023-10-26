@@ -71,13 +71,23 @@ async function initMap() {
 
         function buildContent(property) {
             const content = document.createElement("div");
+            var temp_address = "../.." + property.link + "pin.png";
 
-            //content.classList.add("property");
+            const circle_radius = 22;
+
             content.innerHTML = `
-                <div class="icon">
-                    <img src="pin.png" alt="${property.title}" style="width: 30px;" />
-                </div>
+                <svg width="${circle_radius * 2}" height="${circle_radius * 2}">
+                    <circle cx="${circle_radius}" cy="${circle_radius}" r="${circle_radius}" fill="#2050B0" />
+                </svg>
+                <!-- <img src="${temp_address}" alt="${property.title}" style="width: 30px;" /> -->
             `;
+
+            // content.innerHTML = `
+            //     <div class="icon">
+            //         <img src="pin.png" alt="${property.title}" style="width: 30px;" />
+            //     </div>
+            // `;
+
             return content;
         }
 
@@ -85,12 +95,11 @@ async function initMap() {
         //add marker animation
         dropMarkerAnimation();
 
-
         function dropMarkerAnimation() {
             const intersectionObserver = new IntersectionObserver((entries) => {
                 for (const entry of entries) {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add("drop");
+                        entry.target.classList.add("breath");
                         intersectionObserver.unobserve(entry.target);
                     }
                 }
@@ -100,14 +109,14 @@ async function initMap() {
 
             content.style.opacity = "0";
             content.addEventListener("animationend", (event) => {
-                content.classList.remove("drop");
+                content.classList.remove("breath");
                 content.style.opacity = "1";
 
                 //content.style.setProperty("--delay-time", 1 + "s");
                 //intersectionObserver.observe(content);
             });
 
-            content.style.setProperty("--delay-time", 1 + "s");
+            content.style.setProperty("--delay-time", 0.2 + "s");
             intersectionObserver.observe(content);
         }
 

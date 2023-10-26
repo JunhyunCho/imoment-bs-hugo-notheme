@@ -75,13 +75,23 @@ async function initMap() {
 
         function buildContent(property) {
             const content = document.createElement("div");
-            var temp_address = "../.." + property.link + "pin.png"; //현재는 /poetic/yoram/ 같은 폴더이므로 yoram/pin.png를 얻기 위해 ..를 붙임
+            var temp_address = "../.." + property.link + "pin.png";
+
+            const circle_radius = 22;
 
             content.innerHTML = `
-                <div class="icon">
-                    <img src="${temp_address}" alt="${property.title}" style="width: 30px;" />
-                </div>
+                <svg width="${circle_radius * 2}" height="${circle_radius * 2}">
+                    <circle cx="${circle_radius}" cy="${circle_radius}" r="${circle_radius}" fill="#2050B0" />
+                </svg>
+                <!-- <img src="${temp_address}" alt="${property.title}" style="width: 30px;" /> -->
             `;
+
+            // content.innerHTML = `
+            //     <div class="icon">
+            //         <img src="pin.png" alt="${property.title}" style="width: 30px;" />
+            //     </div>
+            // `;
+
             return content;
         }
 
