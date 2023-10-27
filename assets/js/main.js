@@ -72,7 +72,7 @@ async function initMap() {
             content: buildContent(pinLocations[i]), //custom pin. html. pinLocations[i] is sites[] and it has markdown contents, title and position
 
         });
-
+        /*
         function buildContent(property) {
             const content = document.createElement("div");
             var temp_address = "../.." + property.link + "pin.png";
@@ -93,15 +93,52 @@ async function initMap() {
 
             return content;
         }
+        */
+
+        function buildContent(property) {
+            const content = document.createElement("div");
+            const circle_radius = 22;
+            const gradient_id = `gradient-${property.title}`;
+
+            // Create a gradient that fades the circle out towards the edges
+            const gradient = document.createElementNS("http://www.w3.org/2000/svg", "radialGradient");
+            gradient.setAttribute("id", gradient_id);
+            gradient.setAttribute("cx", "50%");
+            gradient.setAttribute("cy", "50%");
+            gradient.setAttribute("r", "50%");
+            gradient.innerHTML = `
+                <stop offset="0%" stop-color="#2050B0" stop-opacity="1" />
+                <stop offset="80%" stop-color="#2050B0" stop-opacity="0.8" />
+                <stop offset="100%" stop-color="#2050B0" stop-opacity="0" />
+            `;
+
+            // Create the circle with the gradient fill
+            const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            circle.setAttribute("cx", circle_radius);
+            circle.setAttribute("cy", circle_radius);
+            circle.setAttribute("r", circle_radius);
+            circle.setAttribute("fill", `url(#${gradient_id})`);
+
+            // Add the circle to the content div
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("width", circle_radius * 2);
+            svg.setAttribute("height", circle_radius * 2);
+            svg.appendChild(gradient);
+            svg.appendChild(circle);
+            content.appendChild(svg);
+
+            return content;
+        }
+
 
         pinLocations[i].marker = marker;
 
         // Add a click listener for each marker, and set up the info window.
         marker.addListener("click", ({ domEvent, latLng }) => {
             const contentString =
-                '<div id="content" style="margin: 0rem auto;">' +
+                '<div id="content" style="margin: 0rem auto; color:black ">' +
                 `<a href="${pinLocations[i].link}" style="text-decoration:none; color:inherit;">` +
-                `<h5>${marker.title}</h5>` +
+                `<h6>${marker.title}</h6>` +
                 "</a>" +
                 "</div>";
 

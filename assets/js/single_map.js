@@ -37,7 +37,7 @@ async function initMap() {
 
 
     // Create an info window to share between markers.
-    const infoWindow = new InfoWindow();
+    //const infoWindow = new InfoWindow();
 
     // Create the markers.
     tourStops.forEach(({ position, title }, i) => {
@@ -55,19 +55,19 @@ async function initMap() {
         tourStops[i].marker = marker;
 
         // Add a click listener for each marker, and set up the info window.
-        marker.addListener("click", ({ domEvent, latLng }) => {
-            const { target } = domEvent;
+        // marker.addListener("click", ({ domEvent, latLng }) => {
+        //     const { target } = domEvent;
 
-            infoWindow.close();
-            infoWindow.setContent(marker.title);
-            infoWindow.open(marker.map, marker);
-            //console.log("Marker clicked", target, latLng.toJSON());
-            //move center of the map to latLng
-            map.panTo(latLng);
-            //slide carousel card to the right index
-            // carousel.to(i);
-            // console.log("carousel index", i);
-        });
+        //     infoWindow.close();
+        //     infoWindow.setContent(marker.title);
+        //     infoWindow.open(marker.map, marker);
+        //     //console.log("Marker clicked", target, latLng.toJSON());
+        //     //move center of the map to latLng
+        //     map.panTo(latLng);
+        //     //slide carousel card to the right index
+        //     // carousel.to(i);
+        //     // console.log("carousel index", i);
+        // });
 
         // function buildContent(property) {
         //     const content = document.createElement("div");
