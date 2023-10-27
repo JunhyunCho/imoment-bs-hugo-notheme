@@ -13,6 +13,8 @@ locationSmall = '신림동'
 
 Lorem ipsum blah blah 
 
+github에서 직접 수정하면 반영 되는지 테스트
+
 ![yoram](thumb.png)
 
 ![yoram](thumb.png)
