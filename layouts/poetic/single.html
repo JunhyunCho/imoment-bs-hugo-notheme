@@ -79,9 +79,11 @@ rgba(0, 0, 0, 0)); "> </div>
     </style>
     <br>
     {{ .Content }}
-    <br> <br>
 
-    {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+    <div class="mt-3 mb-3">
+
+      {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+    </div>
 
   </div>
 </div>

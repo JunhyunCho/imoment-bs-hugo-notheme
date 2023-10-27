@@ -5,6 +5,4 @@ draft = false
 subtitle = 'index subtitle'
 +++
 
-iMoment Project pages
-
 
