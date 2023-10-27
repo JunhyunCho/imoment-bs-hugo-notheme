@@ -10,14 +10,64 @@
 
         <div id="map-container" class="full-width-map">
           <div id="map" style="height: 400px"> </div>
-          {{/* <div id="map-text-box" style=" position: absolute; top: 0px; left: 0px; width: 100%; height: 80px; 
-            background: linear-gradient(to bottom, rgba(255,255,255, 0.5), rgba(255,255,255, 0.5), rgba(255,255,255, 0.2),
+          <div id="map-text-box" style=" position: absolute; top: 0px; left: 0px; width: 100%; height: 80px; 
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2),
             rgba(0, 0, 0, 0)); z-index: 2;">
             <div id="map-title" style="position: absolute; top: 10px; left: 20px; z-index: 3;">
-              <h2 style="font-family: 'Anton', sans-serif; color: black;"> Poetic Map Project </h2>
+              <h2 style="font-family: 'Anton', sans-serif; color: white;"> Poetic Map Project </h2>
             </div>
-          </div> */}}
+
+            <div id="menu-button" style="position: absolute; top: 10px; right: 10px; z-index: 4;">
+
+
+              <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                aria-controls="offcanvasRight" style="background: none; border: none; color: white;">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list"
+                  viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                </svg>
+              </button>
+
+              {{/* <button class="hamburger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                aria-controls="offcanvasRight" style="background: none; border: none; color: white;">
+                <span class="hamburger-box">
+                  <span class="hamburger-inner"></span>
+                </span>
+              </button> */}}
+
+              {{/* <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="border: 0; color:white">
+                <span class="navbar-toggler-icon"></span>
+              </button> */}}
+            </div>
+          </div>
         </div>
+
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
+          style="max-width: 50%;">
+          <div class="offcanvas-header">
+            <h5 id="offcanvasRightLabel">Menu</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href=' {{ "" | relURL }} '>Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href=' {{"poetic" | relURL }} '>Poetic Map Project</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href=' {{"about" | relURL }} '>About iMoment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+
         <br>
         <p class="fs-7" style="text-indent:0rem">
           도시의 시적 지도는 아이모멘트가 탐색한 도시의 공간, 시간, 그리고 그
