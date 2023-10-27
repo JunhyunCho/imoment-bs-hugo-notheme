@@ -11,13 +11,15 @@
         </div>
     </div>
   </div>  -->
-<nav class="navbar navbar-expand-xxl navbar-light bg-white">
+<nav class="navbar navbar-expand-xxl ">
   <div class="container-fluid">
     {{ if not .IsHome }}
-    <a class="navbar-brand fw-bold fs-5" href="#"> <span style="font-family: 'Anton', sans-serif;"> Poetic Map Project
+    <a class="navbar-brand fw-bold fs-5" href="{{ .Site.BaseURL }}/poetic"> <span
+        style="font-family: 'Anton', sans-serif;">
+        Poetic Map Project
       </span>- {{ site.Title }} </a>
     {{ else }}
-    <a class="navbar-brand fw-bold " href="/"> {{ site.Title }} </a>
+    <a class="navbar-brand fw-bold " href="{{ .RelPermalink }}"> {{ site.Title }} </a>
     {{ end }}
 
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"

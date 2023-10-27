@@ -83,7 +83,6 @@ async function initMap() {
                 <svg width="${circle_radius * 2}" height="${circle_radius * 2}">
                     <circle cx="${circle_radius}" cy="${circle_radius}" r="${circle_radius}" fill="#2050B0" />
                 </svg>
-                <!-- <img src="${temp_address}" alt="${property.title}" style="width: 30px;" /> -->
             `;
 
             // content.innerHTML = `
@@ -99,11 +98,17 @@ async function initMap() {
 
         // Add a click listener for each marker, and set up the info window.
         marker.addListener("click", ({ domEvent, latLng }) => {
-            const { target } = domEvent;
+            const contentString =
+                '<div id="content" style="margin: 0rem auto;">' +
+                `<a href="${pinLocations[i].link}" style="text-decoration:none; color:inherit;">` +
+                `<h5>${marker.title}</h5>` +
+                "</a>" +
+                "</div>";
 
+            console.log(pinLocations[i]);
             infoWindow.close();
-            //infoWindow.setContent(marker.title);
-            //infoWindow.open(marker.map, marker);
+            infoWindow.setContent(contentString);
+            infoWindow.open(marker.map, marker);
             //console.log("Marker clicked", target, latLng.toJSON());
             //move center of the map to latLng
             map.panTo(latLng);
@@ -133,7 +138,7 @@ async function initMap() {
                 content.classList.remove("breath");
                 content.style.opacity = "1";
 
-                //content.style.setProperty("--delay-time", 1 + "s");
+                //content.style.setProperty("--delay-time", 5 + "s");
                 //intersectionObserver.observe(content);
             });
 
@@ -141,12 +146,39 @@ async function initMap() {
             intersectionObserver.observe(content);
         }
 
+
         marker.dropMarkerAnimation = dropMarkerAnimation;
         return marker;
 
     });
 
-    const markerCluster = new MarkerClusterer({ markers, map });
+    const renderer = {
+        render: ({ count, position }) =>
+            new google.maps.Marker({
+                icon: {
+                    url: 'green-circle-feather.png',
+                    scaledSize: new google.maps.Size(30, 30),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(15, 15)
+                },
+                label: { text: String(count), color: "white", fontSize: "10px" },
+                position,
+                // adjust zIndex to be above other markers
+                zIndex: Number(google.maps.Marker.MAX_ZINDEX) + count,
+            }),
+    };
+
+
+
+    const markerCluster = new MarkerClusterer({
+        markers,
+        map,
+        renderer,
+    });
+
+
+
+    //const markerCluster = new MarkerClusterer({ markers, map});
 
     // const parser = new DOMParser();
     // // A marker with a custom inline SVG.

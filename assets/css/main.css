@@ -1,5 +1,6 @@
 body {
   color: #222;
+  /* background-color: #000000; */
   font-family: sans-serif;
   line-height: 1.5;
   margin: 1rem auto;
@@ -11,11 +12,16 @@ body {
 }
 
 header {
+  /* background-color: #000000;
+  color: #FFFFFF; */
   border-bottom: 1px solid #222;
   margin-bottom: 1rem;
 }
 
 footer {
+
+  /* background-color: #000000;
+  color: #FFFFFF; */
   border-top: 1px solid #222;
   margin-top: 1rem;
 }
