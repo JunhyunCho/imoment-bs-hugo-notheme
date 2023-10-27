@@ -1,6 +1,6 @@
-baseURL = 'https://junhyuncho.github.io/imoment-bs-hugo-notheme/'
+baseURL = 'https://www.imoment.kr/'
 languageCode = 'en-us'
-title = 'iMoment'
+title = 'i-Moment'
 
 [outputFormats]
   [outputFormats.MapList]

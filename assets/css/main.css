@@ -36,6 +36,13 @@ a {
   width: 100%;
 }
 
+.full-width-map {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 /* 
 
 @keyframes drop {
