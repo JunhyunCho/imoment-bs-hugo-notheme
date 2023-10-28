@@ -102,9 +102,9 @@ async function initMap() {
             gradient.setAttribute("cy", "50%");
             gradient.setAttribute("r", "50%");
             gradient.innerHTML = `
-                <stop offset="0%" stop-color="#2050B0" stop-opacity="1" />
-                <stop offset="80%" stop-color="#2050B0" stop-opacity="0.8" />
-                <stop offset="100%" stop-color="#2050B0" stop-opacity="0" />
+                <stop offset="0%" stop-color="#2050D0" stop-opacity="1" />
+                <stop offset="80%" stop-color="#2050D0" stop-opacity="0.8" />
+                <stop offset="100%" stop-color="#2050D0" stop-opacity="0" />
             `;
 
             // Create the circle with the gradient fill
