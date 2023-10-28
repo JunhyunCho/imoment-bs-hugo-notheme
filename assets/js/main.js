@@ -43,8 +43,8 @@ async function initMap() {
         "marker",
     );
     map = new Map(document.getElementById("map"), {
-        zoom: 11,
-        center: { lat: 37.535, lng: 127.0035 },
+        zoom: 10.5,
+        center: { lat: 37.56717, lng: 126.98190 },
         disableDefaultUI: true,
         gestureHandling: "greedy",
         mapId: "bf275fc383452ffe",
