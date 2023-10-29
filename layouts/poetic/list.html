@@ -140,12 +140,13 @@ rgba(0, 0, 0, 0)); "> </div>
 
         <div style="display: flex; justify-content: space-evenly;">
           <a href="locationlist.html">
-            <button type="button" class="btn btn-outline-light btn-lg btn-block rounded-0 ps-4 pe-4 "
+            <button type="button" class="btn btn-outline-light btn-lg btn-block rounded-0 ps-4 pe-4"
               style="margin: 0.5rem 0rem;">#Location</button>
           </a>
 
           <a href="keywordlist.html">
-            <button type="button" class="btn btn-outline-light btn-lg btn-block rounded-0 ps-4 pe-4
+            <button type="button" class="btn btn-outline-light btn-lg btn-block rounded-0 ps-4 pe-4"
+              style="margin: 0.5rem 0;">#Keyword</button>
           </a>
         </div>
 
@@ -153,88 +154,88 @@ rgba(0, 0, 0, 0)); "> </div>
 
         <br>
         <br>
-        <table class=" fs-7" style="width:100%; color:#CCC">
-              <tr>
-                <td>디렉터</td>
-                <td>노제현</td>
-              </tr>
-              <tr>
-                <td>공동창작</td>
-                <td>강민지, 노제현, 양석진, 천영돈</td>
-              </tr>
-              <tr>
-                <td>영상감독</td>
-                <td>박용호</td>
-              </tr>
-              <tr>
-                <td>사운드디자인</td>
-                <td>곽다원</td>
-              </tr>
-              <tr>
-                <td>프로듀서</td>
-                <td>임현진</td>
-              </tr>
-              <tr>
-                <td>웹개발</td>
-                <td>조준현</td>
-              </tr>
-              <tr>
-                <td> &nbsp; </td>
-              </tr>
+        <table class="fs-7" style="width:100%; color:#CCC">
+          <tr>
+            <td>디렉터</td>
+            <td>노제현</td>
+          </tr>
+          <tr>
+            <td>공동창작</td>
+            <td>강민지, 노제현, 양석진, 천영돈</td>
+          </tr>
+          <tr>
+            <td>영상감독</td>
+            <td>박용호</td>
+          </tr>
+          <tr>
+            <td>사운드디자인</td>
+            <td>곽다원</td>
+          </tr>
+          <tr>
+            <td>프로듀서</td>
+            <td>임현진</td>
+          </tr>
+          <tr>
+            <td>웹개발</td>
+            <td>조준현</td>
+          </tr>
+          <tr>
+            <td> &nbsp; </td>
+          </tr>
 
-              <tr>
-                <td>Director</td>
-                <td>Jeahyun Nho</td>
-              </tr>
-              <tr>
-                <td>Co-creation</td>
-                <td>Mini Kang, Jeahyun Who, Seokjin Yang, Youngdon Cheon</td>
-              </tr>
-              <tr>
-                <td>Videographer</td>
-                <td>Yongho Park</td>
-              </tr>
-              <tr>
-                <td>Sound Design</td>
-                <td>Dawon Kwak</td>
-              </tr>
-              <tr>
-                <td>Producer</td>
-                <td>Jin Yim</td>
-              </tr>
-              <tr>
-                <td>Web</td>
-                <td>Junhyun Cho</td>
-              </tr>
+          <tr>
+            <td>Director</td>
+            <td>Jeahyun Nho</td>
+          </tr>
+          <tr>
+            <td>Co-creation</td>
+            <td>Mini Kang, Jeahyun Who, Seokjin Yang, Youngdon Cheon</td>
+          </tr>
+          <tr>
+            <td>Videographer</td>
+            <td>Yongho Park</td>
+          </tr>
+          <tr>
+            <td>Sound Design</td>
+            <td>Dawon Kwak</td>
+          </tr>
+          <tr>
+            <td>Producer</td>
+            <td>Jin Yim</td>
+          </tr>
+          <tr>
+            <td>Web</td>
+            <td>Junhyun Cho</td>
+          </tr>
 
-              </table>
-
-
-        </div>
+        </table>
 
 
       </div>
 
+
     </div>
+
   </div>
+</div>
 
-  {{/*
-  <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script> */}}
+{{/*
+<script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script> */}}
 
-  <script>
-    (g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })({
+<script>
+  (g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })({
 
-      key: "AIzaSyAYcjpCTG8LexYskRI6r7aWVNW42h9hIE4",
-      v: "weekly",
-      // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
-      // Add other bootstrap parameters as needed, using camel case.
-    });
+    key: "AIzaSyAYcjpCTG8LexYskRI6r7aWVNW42h9hIE4",
+    v: "weekly",
+    // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
+    // Add other bootstrap parameters as needed, using camel case.
+  });
 
 
-  </script>
+</script>
 
-  {{/*
-  <script type="module" src="js/main.js">  </script> */}}
-  {{ partialCached "head/js.html" . }}
+{{/*
+<script type="module" src="js/main.js">  </script> */}}
+{{ partialCached "head/js.html" . }}
 
-  {{ end }}
+{{ end }}
