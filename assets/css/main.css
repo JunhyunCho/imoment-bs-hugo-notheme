@@ -28,6 +28,10 @@ footer {
   margin-top: 1rem;
 }
 
+h6 {
+  line-height: 1.5rem;
+}
+
 a {
   color: #777;
   text-decoration: none;
