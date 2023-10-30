@@ -192,12 +192,45 @@ async function initMap() {
             }),
     };
 
+    const onClusterClickHandler = (event, cluster, map) => {
+
+        const markers = cluster.markers;
+        console.log(`Cluster clicked with ${markers.length} markers`);
+
+        const bounds = new google.maps.LatLngBounds();
+        for (const marker of markers) {
+            bounds.extend(marker.position);
+        }
+
+        // Get the current bounds' corners
+        const ne = bounds.getNorthEast();
+        const sw = bounds.getSouthWest();
+
+        const expandValue = 0.0005;
+        // Create new corners for the expanded bounds
+        const newNe = { lat: ne.lat() + expandValue, lng: ne.lng() + expandValue };
+        const newSw = { lat: sw.lat() - expandValue, lng: sw.lng() - expandValue };
+
+        // Set the map's bounds to the expanded bounds
+        bounds.extend(newNe);
+        bounds.extend(newSw);
+
+        map.fitBounds(bounds);
+
+
+    };
+
     const markerCluster = new MarkerClusterer({
         markers,
         map,
         renderer,
-        zoomOnClick: false,
+        onClusterClick: onClusterClickHandler
     });
+
+
+    // Add the click event listener
+    //markerCluster.addListener("click", onClusterClickHandler);
+
 
     // google.maps.event.addListener(markerCluster, 'click', function (cluster) {
     //     //map.setCenter(cluster.getCenter());  // center the map on the clicked cluster
