@@ -22,17 +22,22 @@
   </div>
 </div>
 <br>
+
+
 <div class="container-md justify-flex">
   <div class="row">
     <div class="col">
-
-      {{ range .Pages }}
-      <h4 class="fw-normal pb-2"><a href="{{ .RelPermalink }}" style="color: #DDD">{{ .Params.locationSmall }}</a></h4>
+      {{ $pagesGroupedByLocation := .Pages.GroupByParam "locationSmall" }}
+      {{ range $pagesGroupedByLocation }}
+      <h5 class="fw-normal pb-2" style="color: #DDD">{{ .Key }}</h5>
+      <ul>
+        {{ range .Pages }}
+        <h6 style="color:#DDD"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h6>
+        {{ end }}
+      </ul>
       {{ end }}
     </div>
   </div>
-
-
 </div>
 
 
