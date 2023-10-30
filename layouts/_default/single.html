@@ -28,6 +28,16 @@
 
       </div>
     </div>
+
+    &nbsp
+    <style>
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+
+    {{ .Content }}
   </div>
 </div>
 
@@ -54,7 +64,7 @@
 
 <br>
 
-{{ .Content }}
+
 
 {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
 

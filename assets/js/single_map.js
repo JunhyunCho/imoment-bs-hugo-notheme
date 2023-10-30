@@ -25,10 +25,10 @@ async function initMap() {
     console.log(tourStops);
 
     var mapCenter = { ...tourStops[0].position };
-    mapCenter.lat += 0.005;
+    mapCenter.lat += 0.001;
 
     map = new Map(document.getElementById("map"), {
-        zoom: 13,
+        zoom: 15,
         center: mapCenter,
         disableDefaultUI: true,
         gestureHandling: "greedy",
@@ -56,77 +56,26 @@ async function initMap() {
         });
         tourStops[i].marker = marker;
 
-        // Add a click listener for each marker, and set up the info window.
-        // marker.addListener("click", ({ domEvent, latLng }) => {
-        //     const { target } = domEvent;
-
-        //     infoWindow.close();
-        //     infoWindow.setContent(marker.title);
-        //     infoWindow.open(marker.map, marker);
-        //     //console.log("Marker clicked", target, latLng.toJSON());
-        //     //move center of the map to latLng
-        //     map.panTo(latLng);
-        //     //slide carousel card to the right index
-        //     // carousel.to(i);
-        //     // console.log("carousel index", i);
-        // });
-
-        // function buildContent(property) {
-        //     const content = document.createElement("div");
-        //     var temp_address = "../.." + property.link + "pin.png";
-
-        //     const circle_radius = 22;
-
-        //     content.innerHTML = `
-        //         <svg width="${circle_radius * 2}" height="${circle_radius * 2}">
-        //             <circle cx="${circle_radius}" cy="${circle_radius}" r="${circle_radius}" fill="#2050B0" />
-        //         </svg>
-
-
-        //     // content.innerHTML = `
-        //     //     <div class="icon">
-        //     //         <img src="pin.png" alt="${property.title}" style="width: 30px;" />
-        //     //     </div>
-        //     // `;
-
-        //     return content;
-        // }
-
         function buildContent(property) {
             const content = document.createElement("div");
+            var temp_address = "../.." + property.link + "pin.png";
+
             const circle_radius = 22;
-            const gradient_id = `gradient-${property.title}`;
 
-            // Create a gradient that fades the circle out towards the edges
-            const gradient = document.createElementNS("http://www.w3.org/2000/svg", "radialGradient");
-            gradient.setAttribute("id", gradient_id);
-            gradient.setAttribute("cx", "50%");
-            gradient.setAttribute("cy", "50%");
-            gradient.setAttribute("r", "50%");
-            gradient.innerHTML = `
-                <stop offset="0%" stop-color="#2050D0" stop-opacity="1" />
-                <stop offset="80%" stop-color="#2050D0" stop-opacity="0.8" />
-                <stop offset="100%" stop-color="#2050D0" stop-opacity="0" />
+            // content.innerHTML = `
+            //     <svg width="${circle_radius * 2}" height="${circle_radius * 2}">
+            //         <circle cx="${circle_radius}" cy="${circle_radius}" r="${circle_radius}" fill="#2050B0" />
+            //     </svg>
+            // `;
+
+            content.innerHTML = `
+                <div class="icon">
+                    <img src="../blue_pin.png" alt="${property.title}" style="width: 30px;" />
+                </div>
             `;
-
-            // Create the circle with the gradient fill
-            const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-            circle.setAttribute("cx", circle_radius);
-            circle.setAttribute("cy", circle_radius);
-            circle.setAttribute("r", circle_radius);
-            circle.setAttribute("fill", `url(#${gradient_id})`);
-
-            // Add the circle to the content div
-            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            svg.setAttribute("width", circle_radius * 2);
-            svg.setAttribute("height", circle_radius * 2);
-            svg.appendChild(gradient);
-            svg.appendChild(circle);
-            content.appendChild(svg);
 
             return content;
         }
-
 
         //add marker animation
         dropMarkerAnimation();

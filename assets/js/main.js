@@ -1,10 +1,6 @@
 
 import { MarkerClusterer } from "https://cdn.skypack.dev/@googlemaps/markerclusterer@2.3.1";
 
-console.log('/assets/js/main.js ');
-
-//get Elements with class name "carousel-item active"
-
 console.log(sites);
 
 
@@ -75,7 +71,7 @@ async function initMap() {
         const pin = new PinElement({
             glyph: `${i + 1}`,
         });
-        //console.log(pinLocations);
+
         const marker = new AdvancedMarkerElement({
             position,
             map,
@@ -85,64 +81,27 @@ async function initMap() {
             content: buildContent(pinLocations[i]), //custom pin. html. pinLocations[i] is sites[] and it has markdown contents, title and position
 
         });
-        /*
+
         function buildContent(property) {
             const content = document.createElement("div");
             var temp_address = "../.." + property.link + "pin.png";
 
             const circle_radius = 22;
 
-            content.innerHTML = `
-                <svg width="${circle_radius * 2}" height="${circle_radius * 2}">
-                    <circle cx="${circle_radius}" cy="${circle_radius}" r="${circle_radius}" fill="#2050B0" />
-                </svg>
-            `;
-
             // content.innerHTML = `
-            //     <div class="icon">
-            //         <img src="pin.png" alt="${property.title}" style="width: 30px;" />
-            //     </div>
+            //     <svg width="${circle_radius * 2}" height="${circle_radius * 2}">
+            //         <circle cx="${circle_radius}" cy="${circle_radius}" r="${circle_radius}" fill="#2050B0" />
+            //     </svg>
             // `;
 
-            return content;
-        }
-        */
-
-        function buildContent(property) {
-            const content = document.createElement("div");
-            const circle_radius = 22;
-            const gradient_id = `gradient-${property.title}`;
-
-            // Create a gradient that fades the circle out towards the edges
-            const gradient = document.createElementNS("http://www.w3.org/2000/svg", "radialGradient");
-            gradient.setAttribute("id", gradient_id);
-            gradient.setAttribute("cx", "50%");
-            gradient.setAttribute("cy", "50%");
-            gradient.setAttribute("r", "50%");
-            gradient.innerHTML = `
-                <stop offset="0%" stop-color="#2050B0" stop-opacity="1" />
-                <stop offset="80%" stop-color="#2050B0" stop-opacity="0.8" />
-                <stop offset="100%" stop-color="#2050B0" stop-opacity="0" />
+            content.innerHTML = `
+                <div class="icon">
+                    <img src="blue_pin.png" alt="${property.title}" style="width: 30px;" />
+                </div>
             `;
 
-            // Create the circle with the gradient fill
-            const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-            circle.setAttribute("cx", circle_radius);
-            circle.setAttribute("cy", circle_radius);
-            circle.setAttribute("r", circle_radius);
-            circle.setAttribute("fill", `url(#${gradient_id})`);
-
-            // Add the circle to the content div
-            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            svg.setAttribute("width", circle_radius * 2);
-            svg.setAttribute("height", circle_radius * 2);
-            svg.appendChild(gradient);
-            svg.appendChild(circle);
-            content.appendChild(svg);
-
             return content;
         }
-
 
         pinLocations[i].marker = marker;
 
@@ -216,29 +175,38 @@ async function initMap() {
     });
 
     //renderer for marker clusters
-    /*
-      const renderer = {
-          render: ({ count, position }) =>
-              new google.maps.Marker({
-                  icon: {
-                      url: 'green-circle-feather.png',
-                      scaledSize: new google.maps.Size(30, 30),
-                      origin: new google.maps.Point(0, 0),
-                      anchor: new google.maps.Point(15, 15)
-                  },
-                  label: { text: String(count), color: "white", fontSize: "10px" },
-                  position,
-                  // adjust zIndex to be above other markers
-                  zIndex: Number(google.maps.Marker.MAX_ZINDEX) + count,
-              }),
-      };
-      */
+
+    const renderer = {
+        render: ({ count, position }) =>
+            new google.maps.Marker({
+                icon: {
+                    url: 'blue_pin.png',
+                    scaledSize: new google.maps.Size(30, 30),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(15, 15)
+                },
+                label: { text: String(count), color: "white", fontSize: "10px" },
+                position,
+                // adjust zIndex to be above other markers
+                zIndex: Number(google.maps.Marker.MAX_ZINDEX) + count,
+            }),
+    };
+
     const markerCluster = new MarkerClusterer({
         markers,
         map,
-        //renderer,
+        renderer,
+        zoomOnClick: false,
     });
 
+    // google.maps.event.addListener(markerCluster, 'click', function (cluster) {
+    //     //map.setCenter(cluster.getCenter());  // center the map on the clicked cluster
+    //     //map.setZoom(20);  // set the zoom level to 10
+    //     console.log("cluster clicked");
+    // });
+
+
+    // not used
     class Popup extends google.maps.OverlayView {
         position;
         containerDiv;
@@ -291,8 +259,6 @@ async function initMap() {
             }
         }
     }
-
-
 
 
 
