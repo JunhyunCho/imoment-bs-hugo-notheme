@@ -7,6 +7,13 @@ console.log(sites);
 let map, popup, Popup;
 let pinLocations;
 
+function preloadImage(url) {
+    const img = new Image();
+    img.src = url;
+}
+
+preloadImage('blue_pin.png');
+
 
 var myCarousel = document.querySelector('#myCarousel');
 var carousel = new bootstrap.Carousel(myCarousel, {
@@ -216,9 +223,28 @@ async function initMap() {
         bounds.extend(newSw);
 
         map.fitBounds(bounds);
+        // const targetZoom = map.getZoom() + 5;  // Adjust the target zoom level as needed
+        // const targetCenter = bounds.getCenter();
 
+        // smoothZoom(map, targetZoom, targetCenter);
 
     };
+
+    const smoothZoom = (map, targetZoom, targetCenter) => {
+        const currentZoom = map.getZoom();
+        if (currentZoom !== targetZoom) {
+            google.maps.event.addListenerOnce(map, 'zoom_changed', () => {
+                smoothZoom(map, targetZoom, targetCenter);
+            });
+            setTimeout(() => map.setZoom(currentZoom + (targetZoom > currentZoom ? 1 : -1)), 80);  // Adjust the timeout value to change the speed of the zoom
+        } else {
+            map.panTo(targetCenter);  // This will move the map to the new center smoothly
+        }
+    };
+
+
+
+
 
     const markerCluster = new MarkerClusterer({
         markers,

@@ -20,3 +20,6 @@ title = 'i-Moment'
 
 [outputs]
   section = ["HTML", "MapList", "KeywordList", "LocationList"]
+
+[markup.goldmark.renderer]
+  unsafe = true
