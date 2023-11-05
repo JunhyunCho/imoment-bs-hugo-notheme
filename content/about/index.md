@@ -13,6 +13,10 @@ tags = []
 
 
 ![파타모르가나](about.jpeg)   
+<p style="color:#AAA; font-size:0.8em;">공연 ‘파타모르가나: 집의 조각으로부터’ (c) Daiyoon Lim</p>
+
+<br>
+<br> 
 
 [imoment@naver.com](mailto:imoment@naver.com)   
 [instagram.com/imoment.arts](http://instagram.com/imoment.arts)   

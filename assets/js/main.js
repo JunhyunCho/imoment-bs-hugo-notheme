@@ -177,6 +177,7 @@ async function initMap() {
             intersectionObserver.observe(content);
         }
         marker.dropMarkerAnimation = dropMarkerAnimation;
+
         return marker;
 
     });
