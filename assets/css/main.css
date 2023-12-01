@@ -51,9 +51,16 @@ a {
 
 
 .location-detail-style {
-  color: #AAA;
+  color: #BBB;
   font-size: 1rem;
 }
+
+.article-credit-style {
+  display: flex;
+  color: #888;
+  font-size: 0.9rem;
+}
+
 
 #map-text-box {
   width: 100%;
