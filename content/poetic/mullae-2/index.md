@@ -2,7 +2,7 @@
 title = '문래동 - 사이'
 date = 2023-09-26T21:54:41+09:00
 draft = false
-tags = ['도시', '문래동']
+tags = [ '골목', '철공소' , '문래동']
 lat = 37.510900
 lng = 126.893088
 locationLarge = '서울시'
