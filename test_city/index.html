@@ -5,10 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>테스트 시티</title>
+    <script>
+        let socket;
+        let userName;
+
+        function connect() {
+            socket = new WebSocket('https://imoment-node-server-heroku-178f19c891f3.herokuapp.com/');
+
+            socket.onopen = function () {
+                console.log('웹소켓 연결 성공');
+            };
+
+            socket.onmessage = function (event) {
+                if (event.data === 'ping') {
+                    document.getElementById('messages').innerHTML += '<p>서버로부터 ping 메시지를 받았습니다.</p>';
+                }
+            };
+        }
+
+        function submitName() {
+            userName = document.getElementById('nameInput').value;
+            if (userName) {
+                document.getElementById('nameForm').style.display = 'none';
+                document.getElementById('greeting').innerHTML = `Hello ${userName}`;
+                socket.send(JSON.stringify({ type: 'name', name: userName }));
+            }
+        }
+
+        window.onload = connect;
+    </script>
 </head>
 
 <body>
-    <h1>Hello World</h1>
+    <div id="nameForm">
+        <input type="text" id="nameInput" placeholder="이름을 입력하세요">
+        <button onclick="submitName()">제출</button>
+    </div>
+    <h2 id="greeting"></h2>
+    <div id="messages"></div>
 </body>
 
 </html>
