@@ -61,8 +61,8 @@ jobs:
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
           
-      - name: Copy test_city folder
-        run: cp -R test_city public/
+      #- name: Copy test_city folder
+      #  run: cp -R test_city public/
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
