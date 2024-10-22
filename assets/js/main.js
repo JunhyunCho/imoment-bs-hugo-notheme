@@ -1,4 +1,3 @@
-
 import { MarkerClusterer } from "https://cdn.skypack.dev/@googlemaps/markerclusterer@2.3.1";
 
 console.log(sites);
@@ -58,7 +57,10 @@ async function initMap() {
 
 
     // Create an info window to share between markers.
-    const infoWindow = new InfoWindow();
+    const infoWindow = new InfoWindow({
+        maxWidth: 200,
+        pixelOffset: new google.maps.Size(0, -10) // 위치를 약간 위로 조정
+    });
 
     //add map event listner when map is clicked or moved
     map.addListener("drag", () => {
