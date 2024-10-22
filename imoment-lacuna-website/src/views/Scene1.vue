@@ -6,7 +6,7 @@
     </div>
     <router-link to="/" class="home-link">홈으로</router-link>
     <audio ref="audioPlayer" loop>
-      <source src="/audio/bgm.mp3" type="audio/mpeg">
+      <source src="/lacuna/audio/bgm.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
   </div>
@@ -21,7 +21,7 @@ export default {
   methods: {
     playAudio() {
       const audioPlayer = this.$refs.audioPlayer;
-      audioPlayer.volume = 0.5; // 볼륨을 50%로 설정
+      audioPlayer.volume = 0.9; // 볼륨을 90%로 설정
       audioPlayer.play().catch(() => {
         console.log("Auto-play was prevented. Please enable auto-play in your browser settings.");
       });
