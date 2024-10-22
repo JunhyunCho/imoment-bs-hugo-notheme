@@ -6,7 +6,7 @@
     </div>
     <router-link to="/" class="home-link">홈으로</router-link>
     <audio ref="audioPlayer" loop>
-      <source src="/lacuna/audio/bgm.mp3" type="audio/mpeg">
+      <source src="/audio/bgm.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
   </div>
