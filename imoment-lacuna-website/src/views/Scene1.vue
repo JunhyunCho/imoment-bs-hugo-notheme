@@ -2,6 +2,8 @@
   <div class="scene1-container">
     <h1 class="scene-title">Scene 1</h1>
     <img src="/images/train.png" alt="Train" class="train-image" />
+
+    <img src="/lacuna/images/train.png" alt="Train" class="train-image" />
     <div class="content">
       <p>여기에 Scene 1의 내용을 넣으세요.</p>
     </div>
