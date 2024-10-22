@@ -70,14 +70,11 @@ jobs:
         run: |
           cd imoment-lacuna-website
           npm run build
-          mkdir -p ../public/lacuna
-          if [ -d "dist" ]; then
-            mv dist/* ../public/lacuna/
-          elif [ -d "../public/lacuna" ]; then
-            echo "Build output already in ../public/lacuna"
-          else
-            echo "Error: Cannot find Vue build output"
+          if [ ! -d "../public/lacuna" ] || [ -z "$(ls -A ../public/lacuna)" ]; then
+            echo "Error: Vue build output not found in ../public/lacuna"
             exit 1
+          else
+            echo "Vue app built successfully in ../public/lacuna"
           fi
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
