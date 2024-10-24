@@ -9,7 +9,8 @@
         <nav>
             <button @click="goToScene1" class="nav-button">Scene 1</button> |
             <router-link to="/scene2">Scene 2</router-link> |
-            <router-link to="/scene3">Scene 3</router-link>
+            <router-link to="/scene3">Scene 3</router-link>|
+            <router-link to="/scene4">Scene 4</router-link>
         </nav>
         <button @click="enableAudio">오디오 활성화</button>
         <WebSocketComponent @scene-message="handleSceneMessage" />
