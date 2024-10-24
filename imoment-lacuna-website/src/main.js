@@ -7,7 +7,7 @@ import Scene2 from './views/Scene2.vue'
 import Scene3 from './views/Scene3.vue'
 
 const router = createRouter({
-    history: createWebHistory(process.env.NODE_ENV === 'production' ? '/lacuna/' : '/'),
+    history: createWebHistory(process.env.NODE_ENV === 'production' ? '/lacuna/' : '/lacuna/'),
     routes: [
         { path: '/', component: Home },
         { path: '/scene1', component: Scene1 },

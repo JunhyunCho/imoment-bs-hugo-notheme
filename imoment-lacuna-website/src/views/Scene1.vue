@@ -1,33 +1,51 @@
 <template>
   <div class="scene1-container">
     <h1 class="scene-title">Scene 1</h1>
-    <img src="/images/train.png" alt="Train" class="train-image" />
-
     <img src="/lacuna/images/train.png" alt="Train" class="train-image" />
     <div class="content">
       <p>여기에 Scene 1의 내용을 넣으세요.</p>
     </div>
-    <router-link to="/" class="home-link">홈으로</router-link>
-    <audio ref="audioPlayer" loop>
-      <source src="/audio/bgm.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
+    <div class="button-container">
+      <button @click="toggleAudio" class="audio-button">
+        {{ isPlaying ? '음악 끄기' : '음악 켜기' }}
+      </button>
+      <button @click="$router.push('/')" class="home-link">홈으로</button>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Scene1View',
-  mounted() {
-    this.playAudio();
+  data() {
+    return {
+      isPlaying: true
+    }
   },
   methods: {
-    playAudio() {
-      const audioPlayer = this.$refs.audioPlayer;
-      audioPlayer.volume = 0.8; // 볼륨을 50%로 설정
-      audioPlayer.play().catch(() => {
-        console.log("Auto-play was prevented. Please enable auto-play in your browser settings.");
-      });
+    toggleAudio() {
+      const audio = this.$root.$refs.audioElement;
+      if (!audio) {
+        console.error('오디오 요소를 찾을 수 없습니다.');
+        return;
+      }
+      
+      if (this.isPlaying) {
+        audio.pause();
+      } else {
+        audio.play().catch(error => {
+          console.error('오디오 재생 실패:', error);
+        });
+      }
+      this.isPlaying = !this.isPlaying;
+    }
+  },
+  mounted() {
+    // 컴포넌트 마운트 시 현재 오디오 상태 확인
+    const audio = document.querySelector('audio');
+    if (audio) {
+      console.log('scene1 mounted : audio 찾음');
+      this.isPlaying = !audio.paused;
     }
   }
 }
@@ -60,6 +78,22 @@ export default {
   margin-bottom: 20px;
 }
 
+.button-container {
+  display: flex;
+  gap: 10px; /* 버튼 사이의 간격 */
+}
+
+.audio-button {
+  background-color: #2196F3; /* 파란색으로 구분 */
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
 .home-link {
   background-color: #4CAF50;
   color: white;
@@ -67,5 +101,11 @@ export default {
   text-decoration: none;
   border-radius: 5px;
   font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.audio-button:hover, .home-link:hover {
+  opacity: 0.9;
 }
 </style>
