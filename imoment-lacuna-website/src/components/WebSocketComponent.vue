@@ -48,7 +48,8 @@ export default {
         },
         connect() {
             // 웹소켓 연결 메소드
-            this.socket = new WebSocket('wss://imoment-node-server-heroku-178f19c891f3.herokuapp.com/');
+            //this.socket = new WebSocket('wss://imoment-node-server-heroku-178f19c891f3.herokuapp.com/');
+            this.socket = new WebSocket('http://localhost:3000');
 
             this.socket.onmessage = (event) => {
                 // 서버로부터 메시지를 수신했을 때 실행되는 콜백
