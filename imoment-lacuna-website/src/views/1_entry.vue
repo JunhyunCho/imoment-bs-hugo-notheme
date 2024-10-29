@@ -22,11 +22,11 @@
 
 export default {
     name: 'HomeView',
-
     data() {
         return {
             showButton: false,
-            isLeaving: false
+            isLeaving: false,
+            audioElement: null
         }
     },
     mounted() {
@@ -34,28 +34,37 @@ export default {
             this.showButton = true;
         }, 1000);
 
-
-
-    },
-    beforeUnmount() {
-        // audioService.cleanup(); // 필요한 경우에만 사용
+        // 오디오 요소 미리 초기화
+        this.audioElement = this.$root.$refs.all;
+        // if (this.audioElement) {
+        //     this.audioElement.load();
+        //     audioService.init(this.audioElement);
+        //     audioService.setVolume(0.8);
+        //     this.audioElement.pause();
+        //     console.log('all.mp3 초기화 완료');
+        // }
     },
     methods: {
         async handleButtonClick() {
             this.isLeaving = true;
             
             try {
-                // 3초 동안 페이드아웃
-                //await audioService.fadeOut(3);
-                
-                // 페이드아웃 완료 후 라우팅
+                if (this.audioElement) {
+                    await this.audioElement.play();
+                    console.log('all.mp3 재생 시작');
+                }
+                // 오디오 재생 시작되면 바로 다음 화면으로
                 this.$router.push('/3_narration');
+                
             } catch (error) {
-                console.error('오디오 페이드아웃 실패:', error);
-                // 에러가 발생해도 다음 화면으로 이동
+                console.error('오디오 재생 실패:', error);
+                // 실패해도 다음 화면으로
                 this.$router.push('/3_narration');
             }
         }
+    },
+    beforeUnmount() {
+        // 화면 전환 시 오디오는 계속 재생
     }
 }
 </script>

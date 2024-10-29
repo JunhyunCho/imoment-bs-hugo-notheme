@@ -100,16 +100,17 @@ export default {
           }
       },
       goToEntry() {
-          // 먼저 라우팅 시작
-          this.$router.push('/1_entry');
           
           // 동시에 페이드아웃 시작
           const audio = this.$root.$refs.testBGM;
           if (audio) {
-              audioService.fadeOut(2).catch(error => {
+              audioService.fadeOut(3).catch(error => {
                   console.error('오디오 페이드아웃 실패:', error);
               });
           }
+
+          // 먼저 라우팅 시작
+          this.$router.push('/1_entry');
       }
   }
 }

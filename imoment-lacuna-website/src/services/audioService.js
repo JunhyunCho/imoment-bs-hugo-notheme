@@ -1,24 +1,13 @@
 class AudioService {
     constructor() {
-        this.audioContext = null;
-        this.gainNode = null;
-        this.audioSource = null;
         this.audioElement = null;
         this.isInitialized = false;
     }
 
     init(audioElement) {
         this.cleanup();
-
         this.audioElement = audioElement;
-        this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        this.gainNode = this.audioContext.createGain();
-        this.audioSource = this.audioContext.createMediaElementSource(audioElement);
-
-        // 오디오 노드 연결
-        this.audioSource.connect(this.gainNode);
-        this.gainNode.connect(this.audioContext.destination);
-
+        this.audioElement.volume = 0.8; // 기본 볼륨 설정
         this.isInitialized = true;
     }
 
@@ -26,49 +15,14 @@ class AudioService {
         if (this.audioElement) {
             this.audioElement.pause();
             this.audioElement.currentTime = 0;
+            this.audioElement = null;
         }
-
-        // 오디오 노드 연결 해제
-        if (this.audioSource) {
-            this.audioSource.disconnect();
-        }
-        if (this.gainNode) {
-            this.gainNode.disconnect();
-        }
-
-        // AudioContext 정리
-        if (this.audioContext) {
-            this.audioContext.close();
-        }
-
-        // 상태 초기화
-        this.audioContext = null;
-        this.gainNode = null;
-        this.audioSource = null;
-        this.audioElement = null;
         this.isInitialized = false;
     }
 
-    async fadeOut(duration = 3) {
-        if (!this.gainNode || !this.audioElement) return;
-
-        const currentTime = this.audioContext.currentTime;
-        const currentVolume = this.gainNode.gain.value;
-
-        this.gainNode.gain.setValueAtTime(currentVolume, currentTime);
-        this.gainNode.gain.linearRampToValueAtTime(0, currentTime + duration);
-
-        return new Promise(resolve => {
-            setTimeout(() => {
-                this.cleanup();
-                resolve();
-            }, (duration * 1000) + 50);
-        });
-    }
-
     setVolume(volume) {
-        if (this.gainNode) {
-            this.gainNode.gain.value = volume;
+        if (this.audioElement) {
+            this.audioElement.volume = volume;
         }
     }
 
@@ -76,6 +30,30 @@ class AudioService {
         if (this.audioElement) {
             this.audioElement.loop = shouldLoop;
         }
+    }
+
+    fadeOut(duration = 1) {
+        return new Promise((resolve) => {
+            if (!this.audioElement) {
+                resolve();
+                return;
+            }
+
+            const startVolume = this.audioElement.volume;
+            const steps = 30; // 부드러운 페이드를 위한 단계 수
+            const stepDuration = (duration * 1000) / steps;
+            const volumeStep = startVolume / steps;
+
+            const fadeInterval = setInterval(() => {
+                if (this.audioElement.volume > volumeStep) {
+                    this.audioElement.volume -= volumeStep;
+                } else {
+                    clearInterval(fadeInterval);
+                    this.audioElement.volume = 0;
+                    resolve();
+                }
+            }, stepDuration);
+        });
     }
 }
 
