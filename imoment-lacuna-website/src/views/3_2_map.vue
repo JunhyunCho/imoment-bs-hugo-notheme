@@ -1,5 +1,5 @@
 <template>
-    <div class="text-container">
+    <div class="map-container">
         <transition name="fade">
             <img 
                 v-if="showMail" 
@@ -32,7 +32,7 @@ export default {
                 '잉여의 도시는 인간의 도시와 공존하기 때문에\n저희의 모습을 쉽게 발견하기는 어려웠을 수도 있어요.',
                 '이제 우리의 이야기를 들려드릴께요',
                 '서계동 곳곳에 우리가 남긴 이야기의 흔적이 존재합니다.',
-                '지도에서 보이는 표시을 따라 우리를 찾으러 오세요'
+                '지도에서 보이는 표시르 따라 우리를 찾으러 오세요'
             ],
             currentText: '',
             currentIndex: 0, 
@@ -65,11 +65,11 @@ export default {
                 await audio.play();
                 console.log('3_2_map.vue - 나레이션 재생 시작');
                 
-                this.showMail = true;
+                this.showMail = false; //굳이 지도 표시 안해도 될듯. 
                 this.startTextSequence();
             } catch (error) {
                 console.error('3_2_map.vue - 오디오 재생 실패:', error);
-                this.showMail = true;
+                this.showMail = false;
                 this.startTextSequence();
             }
         }, 1000);
@@ -121,14 +121,20 @@ export default {
 </script>
 
 <style scoped>
-.text-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    height: 100vh;
+.map-container {
+    min-height: 100vh;
+    position: relative;
+    padding: 0;
+    margin: 0;
     width: 100vw;
-    padding-top: 20vh;
+    background-image: url('~@/assets/white_wall_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .mail-image {

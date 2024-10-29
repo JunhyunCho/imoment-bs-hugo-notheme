@@ -32,6 +32,7 @@
 
 <script>
 import audioService from '../services/audioService';
+import NoSleep from 'nosleep.js';
 
 export default {
     name: 'SceneAView',
@@ -50,10 +51,14 @@ export default {
             ],
             currentPositionIndex: 0,
             animationInterval: null,
-            audioIndex: null
+            audioIndex: null,
+            noSleep: null
         }
     },
     mounted() {
+        this.noSleep = new NoSleep();
+        this.enableWakeLock();
+        
         this.audioIndex = parseInt(this.$route.query.index, 10);
         
         setTimeout(() => {
@@ -63,6 +68,12 @@ export default {
         this.startItemAnimation();
     },
     methods: {
+        enableWakeLock() {
+            // 사용자 인터랙션(클릭 등)이 필요하므로 버튼 클릭 시 활성화
+            document.addEventListener('click', () => {
+                this.noSleep.enable();
+            }, { once: true }); // once: true로 설정하여 한 번만 실행
+        },
         async handleButtonClick() {
             this.showButton = false;
             
@@ -75,6 +86,8 @@ export default {
                 
                 await audio.play();
                 console.log('오디오 재생 성공');
+                this.enableWakeLock();
+
             } catch (error) {
                 console.error('오디오 재생 실패:', error);
                 this.handleAudioEnd();
@@ -206,6 +219,11 @@ export default {
         // interval 정리 추가
         if (this.animationInterval) {
             clearInterval(this.animationInterval);
+        }
+
+        // NoSleep 비활성화
+        if (this.noSleep) {
+            this.noSleep.disable();
         }
     }
 }

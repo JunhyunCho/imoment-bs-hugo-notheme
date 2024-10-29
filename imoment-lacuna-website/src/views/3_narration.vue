@@ -16,9 +16,9 @@ export default {
         return {
             currentText: '',
             texts: [
-                '기차 소리가 들리면 안내원을 따라 철도원을 찾아주세요.', 
+                '기차 소리가 들리면 \n안내원을 따라 철도원을 찾아주세요.', 
                 ' ',
-                '저마다의 이야기를 이고지고 모이는 존재들이\n정류장 앞에 줄지어 순서를 기다리고 있습니다.',
+                '저마다의 이야기를 \n이고지고 모이는 존재들이\n정류장 앞에 줄지어 \n순서를 기다리고 있습니다.',
                 '떠나세요. 잉여의 도시로',
                 '지금 이 장소가 낯선가요?',
                 '혹은 익숙하신가요?',
@@ -41,8 +41,8 @@ export default {
             displayDurations: [
                 10000,  // 0:00 - 0:10
                 82000,  // 0:10 - 1:32
-                7000,   // 1:32 - 1:42
-                7000,   // 1:42 - 1:49
+                9000,   // 1:32 - 1:42
+                9000,   // 1:42 - 1:49
                 4000,   // 1:49 - 1:53
                 3000,   // 1:53 - 1:56
                 13000,  // 1:56 - 2:09
@@ -98,7 +98,7 @@ export default {
                         this.currentIndex++;
                         showText();
                     }, this.fadeTransitionTime);
-                }, this.displayDurations[this.currentIndex]);
+                }, this.displayDurations[this.currentIndex] - this.fadeTransitionTime);
             };
             
             showText();
@@ -116,20 +116,26 @@ export default {
 
 <style scoped>
 .text-container {
+    min-height: 100vh;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    background-image: url('~@/assets/white_wall_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    width: 100vw;
-    position: relative;
 }
 
 .text {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: center;
-    white-space: pre-line;
-    line-height: 1.8;
-    font-family: 'Noto Sans KR', sans-serif;
+    width: 100%;
+    padding: 0 20px;
 }
 
 .fade-enter-active, .fade-leave-active {

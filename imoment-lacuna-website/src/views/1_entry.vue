@@ -64,7 +64,14 @@ export default {
 .entry-container {
     min-height: 105vh;
     position: relative;
-    padding: 20px;
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    background-image: url('~@/assets/white_wall_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
 }
 
 .content {
@@ -85,7 +92,7 @@ export default {
 .action-button {
     width: 50%;
     aspect-ratio: 5 / 1;
-    background-color: #FFFFFF;
+    background-color: #FFFFFF00;
     color: black;
     border: 1px solid black;
     border-radius: 8px;
