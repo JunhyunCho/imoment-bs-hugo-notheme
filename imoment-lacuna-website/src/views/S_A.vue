@@ -189,7 +189,7 @@ export default {
                         if (this.items.length > 0) {
                             this.items.shift();  // 배열의 첫 번째 요소 제거
                         }
-                    }, 5000);
+                    }, 6000);
                 }
             }, 5000);
         },
@@ -203,7 +203,7 @@ export default {
             const intervalId = setInterval(() => {
                 
                 this.showItem();
-            }, 3000);
+            }, 5000);
 
             // 컴포넌트가 제거될 때 정리하기 위해 intervalId 저장
             this.animationInterval = intervalId;

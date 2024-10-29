@@ -9,7 +9,8 @@ class WebSocketService {
         const isProduction = process.env.NODE_ENV === 'production';
         const serverUrl = isProduction
             ? 'wss://imoment-node-server-heroku-178f19c891f3.herokuapp.com/'
-            : 'ws://localhost:3000';
+            : 'wss://imoment-node-server-heroku-178f19c891f3.herokuapp.com/';
+        // 'ws://localhost:3000';
 
         this.socket = new WebSocket(serverUrl);
 
