@@ -98,30 +98,257 @@ export default {
             console.error('3_narration.vue - 오디오 재생 실패:', error);
             this.showPlayButton = true;
         }
+
+        //5초후 startMailSequence 시퀀스 시작 
+        setTimeout(() => {
+            this.startMailSequence();
+        }, 5000);
     },
     methods: {
-        startTextSequence() {
-            const showText = () => {
+        // 메인 시퀀스 관리
+        async startTextSequence() {
+            const showText = async () => {
                 if (this.currentIndex >= this.texts.length) {
-                    audioService.cleanup();
-                    this.$router.push('/3_1_mail');
+                    await this.startMailSequence();
                     return;
                 }
                 
                 this.currentText = this.texts[this.currentIndex];
                 
-                setTimeout(() => {
-                    this.currentText = '';
-                    
+                await new Promise(resolve => {
                     setTimeout(() => {
-                        this.currentIndex++;
-                        showText();
-                    }, this.fadeTransitionTime);
-                }, this.displayDurations[this.currentIndex] - this.fadeTransitionTime);
+                        this.currentText = '';
+                        
+                        setTimeout(() => {
+                            this.currentIndex++;
+                            resolve();
+                        }, this.fadeTransitionTime);
+                    }, this.displayDurations[this.currentIndex] - this.fadeTransitionTime);
+                });
+                
+                showText();
             };
             
             showText();
         },
+
+
+
+        // 메일 시퀀스 관리
+        async startMailSequence() {
+            try {
+                // 기존 오디오 정리
+                const mainAudio = this.$root.$refs.S0;
+                if (mainAudio) {
+                    await audioService.fadeOut(1);
+                    audioService.cleanup();
+                }
+
+                // 메일 BGM 초기화 및 재생
+                const mailBGM = this.$root.$refs.mailBGM;
+                if (mailBGM) {
+                    try {
+                        await mailBGM.play();
+                        audioService.init(mailBGM);
+                        audioService.setVolume(0.8);
+                        console.log('메일 BGM 재생 시작');
+                    } catch (error) {
+                        console.error('메일 BGM 재생 실패:', error);
+                    }
+                }
+
+                // 메일 UI 시퀀스 시작
+                await this.showMailUI();
+                
+                // 메일 시퀀스 완료 후 맵 시퀀스 시작
+                await this.startMapSequence();
+
+            } catch (error) {
+                console.error('메일 시퀀스 실행 중 오류:', error);
+                this.startMapSequence(); // 오류가 발생해도 맵 시퀀스 시작
+            }
+        },
+
+
+        
+
+        // 새로운 맵 시퀀스 메소드 추가
+        async startMapSequence() {
+            try {
+                // mailBGM 정리
+                const mailBGM = this.$root.$refs.mailBGM;
+                if (mailBGM) {
+                    await audioService.fadeOut(1);
+                    audioService.cleanup();
+                }
+
+                // 맵 나레이션 초기화 및 재생
+                const mapAudio = this.$root.$refs.mailFromK;
+                if (mapAudio) {
+                    try {
+                        await mapAudio.play();
+                        audioService.init(mapAudio);
+                        audioService.setVolume(0.8);
+                        console.log('맵 나레이션 재생 시작');
+                    } catch (error) {
+                        console.error('맵 나레이션 재생 실패:', error);
+                    }
+                }
+
+                // 맵 UI 시퀀스 시작
+                await this.showMapUI();
+
+            } catch (error) {
+                console.error('맵 시퀀스 실행 중 오류:', error);
+                this.$router.push({ path: '/4_map_single', query: { currentIndex: 0 } });
+            }
+        },
+
+        // 메일 UI 표시 관리
+    async showMailUI() {
+        // 메일 이미지와 텍스트 표시 로직
+        const mailContainer = document.createElement('div');
+        mailContainer.className = 'mail-sequence-container';
+        
+        // 스타일 추가
+        Object.assign(mailContainer.style, {
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: 'inherit',
+            zIndex: 1000
+        });
+
+        // 메일 이미지 추가
+        const mailImage = document.createElement('img');
+        mailImage.src = '/lacuna/images/mail.png';
+        mailImage.style.width = '50vw';
+        mailImage.style.opacity = '0';
+        mailImage.style.transition = 'opacity 1s';
+        
+        // 텍스트 추가
+        const mailText = document.createElement('div');
+        mailText.textContent = 'K로부터 편지가 도착하였습니다.';
+        mailText.style.opacity = '0';
+        mailText.style.transition = 'opacity 1s';
+        mailText.style.marginTop = '2rem';
+        mailText.style.fontSize = '1.5rem';
+        
+        mailContainer.appendChild(mailImage);
+        mailContainer.appendChild(mailText);
+        document.body.appendChild(mailContainer);
+
+        // 애니메이션 시퀀스
+        await new Promise(resolve => {
+            setTimeout(() => {
+                mailImage.style.opacity = '1';
+                
+                setTimeout(() => {
+                    mailText.style.opacity = '1';
+                    
+                    setTimeout(() => {
+                        mailImage.style.opacity = '0';
+                        mailText.style.opacity = '0';
+                        
+                        setTimeout(() => {
+                            mailContainer.remove();
+                            //this.startMapSequence();
+                            resolve();
+                        }, 1000);
+                    }, 3000);
+                }, 1000);
+            }, 1000);
+        });
+    },
+
+        // 맵 UI 표시 메소드 추가
+        async showMapUI() {
+            const mapTexts = [
+                ' ',
+                '안녕하세요.\nK입니다.',
+                '잉여의 도시에 오신 여러분을 환영합니다.',
+                '이곳에서 저희는 보이지 않는 틈에서 \n자리를 지키며 살고 있습니다.',
+                '잉여의 도시는 인간의 도시와 공존하기 때문에\n저희의 모습을 쉽게 발견하기는 어려웠을 수도 있어요.',
+                '이제 우리의 이야기를 들려드릴께요',
+                '서계동 곳곳에 우리가 남긴 이야기의 흔적이 존재합니다.',
+                '지도에서 보이는 표시를 따라 우리를 찾으러 오세요'
+            ];
+
+            const displayDurations = [
+                7000, 3000, 3000, 6000, 8000, 2000, 5000, 4000
+            ];
+
+            const mapContainer = document.createElement('div');
+            mapContainer.className = 'map-sequence-container';
+            Object.assign(mapContainer.style, {
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100vw',
+                height: '100vh',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'inherit',
+                zIndex: 1000
+            });
+
+            const mapImage = document.createElement('img');
+            mapImage.src = '/lacuna/images/map.png';
+            mapImage.style.width = '50vw';
+            mapImage.style.opacity = '0';
+            mapImage.style.transition = 'opacity 1s';
+
+            const textDiv = document.createElement('div');
+            textDiv.style.fontSize = '1.3rem';
+            textDiv.style.textAlign = 'center';
+            textDiv.style.whiteSpace = 'pre-line';
+            textDiv.style.lineHeight = '1.8';
+            textDiv.style.opacity = '0';
+            textDiv.style.transition = 'opacity 1s';
+            textDiv.style.marginTop = '2rem';
+
+            mapContainer.appendChild(mapImage);
+            mapContainer.appendChild(textDiv);
+            document.body.appendChild(mapContainer);
+
+            // 텍스트 시퀀스 실행
+            for (let i = 0; i < mapTexts.length; i++) {
+                await new Promise(resolve => {
+                    setTimeout(() => {
+                        textDiv.textContent = mapTexts[i];
+                        textDiv.style.opacity = '1';
+                        
+                        setTimeout(() => {
+                            textDiv.style.opacity = '0';
+                            setTimeout(() => {
+                                resolve();
+                            }, 1000);
+                        }, displayDurations[i] - 1000);
+                    }, 1000);
+                });
+            }
+
+            // 시퀀스 완료 후 정리
+            await new Promise(resolve => {
+                setTimeout(() => {
+                    mapContainer.remove();
+                    audioService.fadeOut(1).then(() => {
+                        audioService.cleanup();
+                        this.$router.push({ path: '/4_map_single', query: { currentIndex: 0 } });
+                        resolve();
+                    });
+                }, 1000);
+            });
+        },
+
         handleTestButtonClick() {
             audioService.cleanup();
             this.$router.push('/3_1_mail');
