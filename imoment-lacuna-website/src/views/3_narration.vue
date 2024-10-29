@@ -76,6 +76,7 @@ export default {
         this.noSleep = new NoSleep();
         this.enableWakeLock();
         this.startTextSequence();
+        //this.startMapSequence();
     },
     methods: {
         async startTextSequence() {
@@ -215,14 +216,10 @@ export default {
                 alignItems: 'center',
                 justifyContent: 'center',
                 background: 'inherit',
-                zIndex: 1000
+                zIndex: 1000,
+                paddingBottom: '20vh',
             });
 
-            const mapImage = document.createElement('img');
-            mapImage.src = '/lacuna/images/map.png';
-            mapImage.style.width = '50vw';
-            mapImage.style.opacity = '0';
-            mapImage.style.transition = 'opacity 1s';
 
             const textDiv = document.createElement('div');
             textDiv.style.fontSize = '1.3rem';
@@ -233,7 +230,6 @@ export default {
             textDiv.style.transition = 'opacity 1s';
             textDiv.style.marginTop = '2rem';
 
-            mapContainer.appendChild(mapImage);
             mapContainer.appendChild(textDiv);
             document.body.appendChild(mapContainer);
 
