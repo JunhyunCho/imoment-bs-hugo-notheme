@@ -82,6 +82,7 @@ export default {
                     this.showText = false;
                     
                     setTimeout(() => {
+                        audioService.cleanup();
                         this.$router.push('/3_2_map');
                     }, 1000);
                 }, 3000);

@@ -103,6 +103,7 @@ export default {
         startTextSequence() {
             const showText = () => {
                 if (this.currentIndex >= this.texts.length) {
+                    audioService.cleanup();
                     this.$router.push('/3_1_mail');
                     return;
                 }

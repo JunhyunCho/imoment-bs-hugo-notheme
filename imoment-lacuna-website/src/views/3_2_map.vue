@@ -115,6 +115,7 @@ export default {
                 await audioService.fadeOut(1);  // 1초 동안 페이드아웃
                 setTimeout(() => {
                     const currentIndex = 0;
+                    audioService.cleanup();
                     this.$router.push({ path: '/4_map_single', query: { currentIndex } });
                 }, 1000);
             } catch (error) {
