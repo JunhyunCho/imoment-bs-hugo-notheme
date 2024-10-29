@@ -1,0 +1,49 @@
+{{/*
+<h1>{{ site.Title }} partials/header.html</h1>
+{{ partial "menu.html" (dict "menuID" "main" "page" .) }} */}}
+
+<!--  <div class="container-fluid bg-secondary">
+    <div class="row">
+        <div class="col p-2">
+            <span class="h2 text-white">
+                 Page Header
+            </span>
+        </div>
+    </div>
+  </div>  -->
+
+
+<nav class="navbar navbar-expand-xxl navbar-light bg-white">
+  <div class="container-fluid">
+    {{ if not .IsHome }}
+    <a class="navbar-brand fw-bold fs-2" href="#"> {{ .Title }} </a>
+    {{ else }}
+    <a class="navbar-brand fw-bold fs-2" href="#"> {{ site.Title }} </a>
+    {{ end }}
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+      aria-controls="offcanvasRight" style="border: 0">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
+      style="max-width: 50%;">
+      <div class="offcanvas-header">
+        <h5 id="offcanvasRightLabel">Menu</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href=' {{ "" | relURL }} '>Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=' {{"poetic" | relURL }} '>Poetic Map Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=' {{"about" | relURL }} '>About iMoment</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

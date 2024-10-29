@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+        // 현재 URL에서 경로 부분만 추출
+        const segment = window.location.pathname.split('/lacuna/')[1];
+        // 기본 URL로 리다이렉트하면서 경로 정보를 해시로 전달
+        window.location.href = '/lacuna/#/' + segment;
+    </script>
+</head>
+
+<body>
+    Redirecting...
+</body>
+
+</html>

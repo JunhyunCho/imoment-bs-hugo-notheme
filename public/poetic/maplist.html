@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en-us"
+  dir="ltr">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Sunflower:wght@300&display=swap" rel="stylesheet">
+
+
+<title> Poetic Map Project | i-Moment  </title>
+
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+
+<body>
+  <header>
+    
+    
+  </header>
+  <main>
+
+
+<div id="map-container" class="full-width-map">
+  <div id="map" style="height: 350px"> </div>
+  <div id="text-box-gradient-bg" style=" position: absolute; top: 0px; left: 0px; width:100%; height: 80px; 
+background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2),
+rgba(0, 0, 0, 0)); pointer-events:none"> </div>
+
+</div>
+
+<div id="map-text-box" style="position: absolute; top: 10px;  ">
+  <div class="container ">
+    <div class="row">
+      <div class="col-8">
+        <div id=" map-title">
+          <h2 style="font-family: 'Anton', sans-serif; color: white;"> Poetic Map Project </h2>
+        </div>
+
+
+      </div>
+      <div class="col-4 d-flex justify-content-end" style="z-index: 5;">
+
+        <div id="menu-button">
+
+          <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight" style="background: none; border: none; color: white;">
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list"
+              viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+            </svg>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
+  style="width : 300px; max-width: 50%; background-color : black; color:#DDD">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Menu</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href=' / '>Home</a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href=' /about '>About iMoment</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="container justify-flex">
+  <div class="row">
+    <div class="col">
+      
+        
+
+
+
+        
+
+        <br>
+
+        <div id="myCarousel" class="carousel slide" style="height: 7rem;">
+          <div class="carousel-inner">
+
+            
+
+            <script> sites = []; </script>
+
+            
+
+            <script>
+              sites.push({
+                title: "당산동 - 미지",
+                position : { lat:  37.543624 , lng :  126.899659  },
+                link : "/poetic/dangsandong-1/",
+        });
+            </script>
+            
+
+              
+              
+              
+              
+
+
+              <div class=carousel-item&#32;active id=당산동&#32;-&#32;미지 lat=37.543624 lng=126.899659>
+                <a href=/poetic/dangsandong-1/ class="text-decoration-none">
+                  <div class="card position-relative border-0" style="height: 7rem ">
+                    <img src=/poetic/dangsandong-1//thumb.jpg class="card-img" alt="...">
+                    <div class="overlay"> </div>
+                    <h3 class="display-7 fw-light card-title">당산동 - 미지</h3>
+                  </div>
+                </a>
+              </div>
+
+              
+              
+
+              
+
+            <script>
+              sites.push({
+                title: "당산동 - 징조",
+                position : { lat:  37.539449 , lng :  126.902198  },
+                link : "/poetic/dangsandong-2/",
+        });
+            </script>
+            
+
+              
+              
+              
+              
+
+
+              <div class=carousel-item id=당산동&#32;-&#32;징조 lat=37.539449 lng=126.902198>
+                <a href=/poetic/dangsandong-2/ class="text-decoration-none">
+                  <div class="card position-relative border-0" style="height: 7rem ">
+                    <img src=/poetic/dangsandong-2//thumb.jpg class="card-img" alt="...">
+                    <div class="overlay"> </div>
+                    <h3 class="display-7 fw-light card-title">당산동 - 징조</h3>
+                  </div>
+                </a>
+              </div>
+
+              
+              
+
+              
+
+            <script>
+              sites.push({
+                title: "동부이촌동 - 경계",
+                position : { lat:  37.518651 , lng :  126.984808  },
+                link : "/poetic/dongbu-ichon/",
+        });
+            </script>
+            
+
+              
+              
+              
+              
+
+
+              <div class=carousel-item id=동부이촌동&#32;-&#32;경계 lat=37.518651 lng=126.984808>
+                <a href=/poetic/dongbu-ichon/ class="text-decoration-none">
+                  <div class="card position-relative border-0" style="height: 7rem ">
+                    <img src=/poetic/dongbu-ichon//thumb.jpg class="card-img" alt="...">
+                    <div class="overlay"> </div>
+                    <h3 class="display-7 fw-light card-title">동부이촌동 - 경계</h3>
+                  </div>
+                </a>
+              </div>
+
+              
+              
+
+              
+
+            <script>
+              sites.push({
+                title: "문래동 - 골목의 법칙",
+                position : { lat:  37.510472 , lng :  126.892404  },
+                link : "/poetic/mullae-1/",
+        });
+            </script>
+            
+
+              
+              
+              
+              
+
+
+              <div class=carousel-item id=문래동&#32;-&#32;골목의&#32;법칙 lat=37.510472 lng=126.892404>
+                <a href=/poetic/mullae-1/ class="text-decoration-none">
+                  <div class="card position-relative border-0" style="height: 7rem ">
+                    <img src=/poetic/mullae-1//thumb.jpg class="card-img" alt="...">
+                    <div class="overlay"> </div>
+                    <h3 class="display-7 fw-light card-title">문래동 - 골목의 법칙</h3>
+                  </div>
+                </a>
+              </div>
+
+              
+              
+
+              
+
+            <script>
+              sites.push({
+                title: "문래동 - 도시의 시간",
+                position : { lat:  37.511969 , lng :  126.897671  },
+                link : "/poetic/mullae-3/",
+        });
+            </script>
+            
+
+              
+              
+              
+              
+
+
+              <div class=carousel-item id=문래동&#32;-&#32;도시의&#32;시간 lat=37.511969 lng=126.897671>
+                <a href=/poetic/mullae-3/ class="text-decoration-none">
+                  <div class="card position-relative border-0" style="height: 7rem ">
+                    <img src=/poetic/mullae-3//thumb.jpg class="card-img" alt="...">
+                    <div class="overlay"> </div>
+                    <h3 class="display-7 fw-light card-title">문래동 - 도시의 시간</h3>
+                  </div>
+                </a>
+              </div>
+
+              
+              
+
+              
+
+            <script>
+              sites.push({
+                title: "문래동 - 사이",
+                position : { lat:  37.5109 , lng :  126.893088  },
+                link : "/poetic/mullae-2/",
+        });
+            </script>
+            
+
+              
+              
+              
+              
+
+
+              <div class=carousel-item id=문래동&#32;-&#32;사이 lat=37.5109 lng=126.893088>
+                <a href=/poetic/mullae-2/ class="text-decoration-none">
+                  <div class="card position-relative border-0" style="height: 7rem ">
+                    <img src=/poetic/mullae-2//thumb.jpg class="card-img" alt="...">
+                    <div class="overlay"> </div>
+                    <h3 class="display-7 fw-light card-title">문래동 - 사이</h3>
+                  </div>
+                </a>
+              </div>
+
+              
+              
+
+              
+
+            <script>
+              sites.push({
+                title: "문래동 - 사이렌이 있었더라면",
+                position : { lat:  37.513855 , lng :  126.897558  },
+                link : "/poetic/mullae-4/",
+        });
+            </script>
+            
+
+              
+              
+              
+              
+
+
+              <div class=carousel-item id=문래동&#32;-&#32;사이렌이&#32;있었더라면 lat=37.513855 lng=126.897558>
+                <a href=/poetic/mullae-4/ class="text-decoration-none">
+                  <div class="card position-relative border-0" style="height: 7rem ">
+                    <img src=/poetic/mullae-4//thumb.jpg class="card-img" alt="...">
+                    <div class="overlay"> </div>
+                    <h3 class="display-7 fw-light card-title">문래동 - 사이렌이 있었더라면</h3>
+                  </div>
+                </a>
+              </div>
+
+              
+              
+
+              
+
+            <script>
+              sites.push({
+                title: "삼성동 - 또 다른 세계에서 만나",
+                position : { lat:  37.464775 , lng :  126.930147  },
+                link : "/poetic/samsung-1/",
+        });
+            </script>
+            
+
+              
+              
+              
+              
+
+
+              <div class=carousel-item id=삼성동&#32;-&#32;또&#32;다른&#32;세계에서&#32;만나 lat=37.464775 lng=126.930147>
+                <a href=/poetic/samsung-1/ class="text-decoration-none">
+                  <div class="card position-relative border-0" style="height: 7rem ">
+                    <img src=/poetic/samsung-1//thumb.jpg class="card-img" alt="...">
+                    <div class="overlay"> </div>
+                    <h3 class="display-7 fw-light card-title">삼성동 - 또 다른 세계에서 만나</h3>
+                  </div>
+                </a>
+              </div>
+
+              
+              
+
+              
+
+            <script>
+              sites.push({
+                title: "삼성동 - 밀려난 존재들의 성전",
+                position : { lat:  37.464639 , lng :  126.930611  },
+                link : "/poetic/samsung-2/",
+        });
+            </script>
+            
+
+              
+              
+              
+              
+
+
+              <div class=carousel-item id=삼성동&#32;-&#32;밀려난&#32;존재들의&#32;성전 lat=37.464639 lng=126.930611>
+                <a href=/poetic/samsung-2/ class="text-decoration-none">
+                  <div class="card position-relative border-0" style="height: 7rem ">
+                    <img src=/poetic/samsung-2//thumb.jpg class="card-img" alt="...">
+                    <div class="overlay"> </div>
+                    <h3 class="display-7 fw-light card-title">삼성동 - 밀려난 존재들의 성전</h3>
+                  </div>
+                </a>
+              </div>
+
+              
+              
+
+              
+
+            <script>
+              sites.push({
+                title: "삼성동 - 파라다이스",
+                position : { lat:  37.459416 , lng :  126.929184  },
+                link : "/poetic/samsung-3/",
+        });
+            </script>
+            
+
+              
+              
+              
+              
+
+
+              <div class=carousel-item id=삼성동&#32;-&#32;파라다이스 lat=37.459416 lng=126.929184>
+                <a href=/poetic/samsung-3/ class="text-decoration-none">
+                  <div class="card position-relative border-0" style="height: 7rem ">
+                    <img src=/poetic/samsung-3//thumb.jpg class="card-img" alt="...">
+                    <div class="overlay"> </div>
+                    <h3 class="display-7 fw-light card-title">삼성동 - 파라다이스</h3>
+                  </div>
+                </a>
+              </div>
+
+              
+              
+
+              
+
+            <script>
+              sites.push({
+                title: "을지로 - 무게",
+                position : { lat:  37.569474 , lng :  126.995246  },
+                link : "/poetic/uljiro/",
+        });
+            </script>
+            
+
+              
+              
+              
+              
+
+
+              <div class=carousel-item id=을지로&#32;-&#32;무게 lat=37.569474 lng=126.995246>
+                <a href=/poetic/uljiro/ class="text-decoration-none">
+                  <div class="card position-relative border-0" style="height: 7rem ">
+                    <img src=/poetic/uljiro//thumb.jpg class="card-img" alt="...">
+                    <div class="overlay"> </div>
+                    <h3 class="display-7 fw-light card-title">을지로 - 무게</h3>
+                  </div>
+                </a>
+              </div>
+
+              
+              
+
+              
+
+            <script>
+              sites.push({
+                title: "충현동 - 겹",
+                position : { lat:  37.565402 , lng :  126.960713  },
+                link : "/poetic/chunghyeon-3/",
+        });
+            </script>
+            
+
+              
+              
+              
+              
+
+
+              <div class=carousel-item id=충현동&#32;-&#32;겹 lat=37.565402 lng=126.960713>
+                <a href=/poetic/chunghyeon-3/ class="text-decoration-none">
+                  <div class="card position-relative border-0" style="height: 7rem ">
+                    <img src=/poetic/chunghyeon-3//thumb.jpg class="card-img" alt="...">
+                    <div class="overlay"> </div>
+                    <h3 class="display-7 fw-light card-title">충현동 - 겹</h3>
+                  </div>
+                </a>
+              </div>
+
+              
+              
+
+              
+
+            <script>
+              sites.push({
+                title: "충현동 - 틈",
+                position : { lat:  37.565576 , lng :  126.959772  },
+                link : "/poetic/chunghyeon-2/",
+        });
+            </script>
+            
+
+              
+              
+              
+              
+
+
+              <div class=carousel-item id=충현동&#32;-&#32;틈 lat=37.565576 lng=126.959772>
+                <a href=/poetic/chunghyeon-2/ class="text-decoration-none">
+                  <div class="card position-relative border-0" style="height: 7rem ">
+                    <img src=/poetic/chunghyeon-2//thumb.jpg class="card-img" alt="...">
+                    <div class="overlay"> </div>
+                    <h3 class="display-7 fw-light card-title">충현동 - 틈</h3>
+                  </div>
+                </a>
+              </div>
+
+              
+              
+
+              
+
+            <script>
+              sites.push({
+                title: "충현동 - 흐르는 골목",
+                position : { lat:  37.565516 , lng :  126.959793  },
+                link : "/poetic/chunghyeon-1/",
+        });
+            </script>
+            
+
+              
+              
+              
+              
+
+
+              <div class=carousel-item id=충현동&#32;-&#32;흐르는&#32;골목 lat=37.565516 lng=126.959793>
+                <a href=/poetic/chunghyeon-1/ class="text-decoration-none">
+                  <div class="card position-relative border-0" style="height: 7rem ">
+                    <img src=/poetic/chunghyeon-1//thumb.jpg class="card-img" alt="...">
+                    <div class="overlay"> </div>
+                    <h3 class="display-7 fw-light card-title">충현동 - 흐르는 골목</h3>
+                  </div>
+                </a>
+              </div>
+
+              
+              
+
+              
+
+            <script>
+              sites.push({
+                title: "흑석동 - 장소 되감기",
+                position : { lat:  37.505632 , lng :  126.968909  },
+                link : "/poetic/hukseok-2/",
+        });
+            </script>
+            
+
+              
+              
+              
+              
+
+
+              <div class=carousel-item id=흑석동&#32;-&#32;장소&#32;되감기 lat=37.505632 lng=126.968909>
+                <a href=/poetic/hukseok-2/ class="text-decoration-none">
+                  <div class="card position-relative border-0" style="height: 7rem ">
+                    <img src=/poetic/hukseok-2//thumb.jpg class="card-img" alt="...">
+                    <div class="overlay"> </div>
+                    <h3 class="display-7 fw-light card-title">흑석동 - 장소 되감기</h3>
+                  </div>
+                </a>
+              </div>
+
+              
+              
+
+              
+
+            <script>
+              sites.push({
+                title: "흑석동 - 정지된 도시",
+                position : { lat:  37.504748 , lng :  126.969535  },
+                link : "/poetic/hukseok-1/",
+        });
+            </script>
+            
+
+              
+              
+              
+              
+
+
+              <div class=carousel-item id=흑석동&#32;-&#32;정지된&#32;도시 lat=37.504748 lng=126.969535>
+                <a href=/poetic/hukseok-1/ class="text-decoration-none">
+                  <div class="card position-relative border-0" style="height: 7rem ">
+                    <img src=/poetic/hukseok-1//thumb.jpg class="card-img" alt="...">
+                    <div class="overlay"> </div>
+                    <h3 class="display-7 fw-light card-title">흑석동 - 정지된 도시</h3>
+                  </div>
+                </a>
+              </div>
+
+              
+              
+
+              
+
+
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+
+          <br>
+
+
+
+        </div>
+
+        <br>
+        <h6 id="도시의-시적-지도는-아이모멘트가-탐색한-도시의-공간시간그리고-그-사이의-틈을-공유하는-온라인미디어-자리이다-도시에서-발견한-장소와-공간에-덧입힌-시적인-상상과-이야기를-필름과-텍스트로-전달한다-지도-위의-장소에-실제로-찾아가면-시간의-틈을-연결하는-장치가-마련되어-있다-누군가는-현장에서-만난-포트키를-통해-이곳에-접속한다">도시의 시적 지도는 아이모멘트가 탐색한 도시의 공간, 시간, 그리고 그 사이의 틈을 공유하는 온라인/미디어 자리이다. 도시에서 발견한 장소와 공간에 덧입힌 시적인 상상과 이야기를 필름과 텍스트로 전달한다. 지도 위의 장소에 실제로 찾아가면 시간의 틈을 연결하는 장치가 마련되어 있다. 누군가는 현장에서 만난 포트키를 통해 이곳에 접속한다.</h6>
+<p>#장소 #매핑 #상상의자리</p>
+<br>
+
+
+        <div style="display: flex; justify-content: space-evenly;">
+          <a href="locationlist.html">
+            <button type="button" class="btn btn-outline-light btn-lg btn-block rounded-0 ps-4 pe-4"
+              style="margin: 0.5rem 0rem;">#Location</button>
+          </a>
+
+          <a href="keywordlist.html">
+            <button type="button" class="btn btn-outline-light btn-lg btn-block rounded-0 ps-4 pe-4"
+              style="margin: 0.5rem 0;">#Keyword</button>
+          </a>
+        </div>
+
+
+
+        <br>
+        <br>
+        <table class="fs-7" style="width:100%; color:#CCC">
+          <tr>
+            <td>디렉터</td>
+            <td>노제현</td>
+          </tr>
+          <tr>
+            <td>공동창작</td>
+            <td>강민지, 노제현, 양석진, 천영돈</td>
+          </tr>
+          <tr>
+            <td>장소리서치/글</td>
+            <td>이경민</td>
+          </tr>
+          <tr>
+            <td>영상감독</td>
+            <td>박용호</td>
+          </tr>
+          <tr>
+            <td>사운드디자인</td>
+            <td>곽다원</td>
+          </tr>
+          <tr>
+            <td>프로듀서/글</td>
+            <td>임현진</td>
+          </tr>
+          <tr>
+            <td>웹개발</td>
+            <td>조준현</td>
+          </tr>
+          <tr>
+            <td> &nbsp; </td>
+          </tr>
+
+          <tr>
+            <td>Director</td>
+            <td>Jeahyun Nho</td>
+          </tr>
+          <tr>
+            <td>Co-creation</td>
+            <td>Minji Kang, Jeahyun Nho, Seokjin Yang, Youngdon Chun</td>
+          </tr>
+          <tr>
+            <td>Place Research/Text</td>
+            <td>Kyungmin Lee</td>
+          </tr>
+          <tr>
+            <td>Videographer</td>
+            <td>Yongho Park</td>
+          </tr>
+          <tr>
+            <td>Sound Design</td>
+            <td>Dawon Kwak</td>
+          </tr>
+          <tr>
+            <td>Producer/Text</td>
+            <td>Jin Yim</td>
+          </tr>
+          <tr>
+            <td>Web</td>
+            <td>Junhyun Cho</td>
+          </tr>
+
+        </table>
+
+
+
+
+        <br><br>
+        <div style="display: flex; justify-content: space-evenly; align-items: center;">
+          <img src="/logo/online-bw.png" style="width: 80px; height: auto; opacity: 0.7;">
+          <img src="/logo/arko-bw.png" style="width: 70px; height: auto; opacity: 0.7;">
+          <img src="/logo/moon-bw.png" style="width: 100px; height: auto; opacity: 0.7;">
+        </div>
+        <br>
+
+
+        <p class="fs-7" style="font-size:0.8rem; color:#AAA"> 2023년 문화체육관광부와 한국문화예술위원회의 ‘온라인미디어 예술활동 지원사업’의 지원을 받아
+          제작되었습니다. </p>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+<script>
+  (g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })({
+
+    key: "AIzaSyAYcjpCTG8LexYskRI6r7aWVNW42h9hIE4",
+    v: "weekly",
+    
+    
+  });
+
+
+</script>
+
+
+
+
+      <script type="module" src="/js/main.js"></script>
+
+
+
+
+
+</main>
+  <footer>
+    <div class="container-fluid">
+    <div class="row p-2">
+        <div class="col pt-2">
+
+
+            <span class="fs-7">
+                (c) i-Moment all rights reserved.
+            </span>
+        </div>
+        <div class="col-1 pt-2 me-1">
+            <a href="https://www.instagram.com/imoment.arts/" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" class="bi bi-instagram"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z">
+                    </path>
+                </svg>
+            </a>
+        </div>
+        <div class="col-1 pt-2 me-2">
+            <a href="https://www.facebook.com/imoment.arts" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" class="bi bi-facebook"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+
+
+</div> <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+
+
+  </footer>
+</body>
+
+</html>

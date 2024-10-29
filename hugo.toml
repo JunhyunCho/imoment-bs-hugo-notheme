@@ -1,0 +1,25 @@
+baseURL = 'https://www.imoment.kr/'
+languageCode = 'en-us'
+title = 'i-Moment'
+
+[outputFormats]
+  [outputFormats.MapList]
+    mediaType = "text/html"
+    baseName = "maplist"
+    isHTML = true
+
+  [outputFormats.KeywordList]
+    mediaType = "text/html"
+    baseName = "keywordlist"
+    isHTML = true
+
+  [outputFormats.LocationList]
+    mediaType = "text/html"
+    baseName = "locationlist"
+    isHTML = true
+
+[outputs]
+  section = ["HTML", "MapList", "KeywordList", "LocationList"]
+
+[markup.goldmark.renderer]
+  unsafe = true

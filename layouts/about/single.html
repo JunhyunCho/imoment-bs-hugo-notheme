@@ -1,0 +1,11 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+
+test!!
+
+
+{{ .Content }}
+
+{{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+
+{{ end }}

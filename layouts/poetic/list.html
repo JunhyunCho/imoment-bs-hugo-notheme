@@ -1,0 +1,262 @@
+{{ define "main"}}
+
+
+<div id="map-container" class="full-width-map">
+  <div id="map" style="height: 350px"> </div>
+  <div id="text-box-gradient-bg" style=" position: absolute; top: 0px; left: 0px; width:100%; height: 80px; 
+background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2),
+rgba(0, 0, 0, 0)); pointer-events:none"> </div>
+
+</div>
+
+<div id="map-text-box" style="position: absolute; top: 10px;  ">
+  <div class="container ">
+    <div class="row">
+      <div class="col-8">
+        <div id=" map-title">
+          <h2 style="font-family: 'Anton', sans-serif; color: white;"> Poetic Map Project </h2>
+        </div>
+
+
+      </div>
+      <div class="col-4 d-flex justify-content-end" style="z-index: 5;">
+
+        <div id="menu-button">
+
+          <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight" style="background: none; border: none; color: white;">
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list"
+              viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+            </svg>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
+  style="width : 300px; max-width: 50%; background-color : black; color:#DDD">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Menu</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href=' {{ "" | relURL }} '>Home</a>
+      </li>
+      {{/* <li class="nav-item">
+        <a class="nav-link" href=' {{"poetic" | relURL }} '>Poetic Map Project</a>
+      </li> */}}
+      <li class="nav-item">
+        <a class="nav-link" href=' {{"about" | relURL }} '>About iMoment</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="container justify-flex">
+  <div class="row">
+    <div class="col">
+      {{/* <div class="text-center">
+        {{/* <h1> {{ .Site.Title }} </h1> */}}
+        {{/* <h2 class="text-secondary h3"> {{ .Params.subtitle }} </h2> */}}
+
+
+
+        {{/* <div id="map" style="height: 300px"> </div>*/}}
+
+        <br>
+
+        <div id="myCarousel" class="carousel slide" style="height: 7rem;">
+          <div class="carousel-inner">
+
+            {{ $count := 0 }}
+
+            <script> sites = []; </script>
+
+            {{ range .Pages }}
+
+            <script>
+              sites.push({
+                title: {{ .Params.title }},
+                position : { lat: {{ .Params.lat }}, lng : {{ .Params.lng }} },
+                link : {{ .RelPermalink }},
+        });
+            </script>
+            {{/* <h3><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2> */}}
+
+              {{ $carousel_class := "" }}
+              {{ if eq $count 0 }}
+              {{ $carousel_class = "carousel-item active" }}
+              {{ else }}
+              {{ $carousel_class = "carousel-item" }}
+              {{ end }}
+
+
+              <div class={{$carousel_class}} id={{.Params.title}} lat={{.Params.lat}} lng={{.Params.lng}}>
+                <a href={{.RelPermalink}} class="text-decoration-none">
+                  <div class="card position-relative border-0" style="height: 7rem ">
+                    <img src={{ printf "%s%s" .RelPermalink "/thumb.jpg" }} class="card-img" alt="...">
+                    <div class="overlay"> </div>
+                    <h3 class="display-7 fw-light card-title">{{.Params.title}}</h3>
+                  </div>
+                </a>
+              </div>
+
+              {{/* {{ print $count " " .RelPermalink " " .Params.title " " $carousel_class}} */}}
+              {{ $count = add $count 1 }}
+
+              {{ end }}
+
+
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+
+          <br>
+
+
+
+        </div>
+
+        <br>
+        {{ .Content }}
+
+        <div style="display: flex; justify-content: space-evenly;">
+          <a href="locationlist.html">
+            <button type="button" class="btn btn-outline-light btn-lg btn-block rounded-0 ps-4 pe-4"
+              style="margin: 0.5rem 0rem;">#Location</button>
+          </a>
+
+          <a href="keywordlist.html">
+            <button type="button" class="btn btn-outline-light btn-lg btn-block rounded-0 ps-4 pe-4"
+              style="margin: 0.5rem 0;">#Keyword</button>
+          </a>
+        </div>
+
+
+
+        <br>
+        <br>
+        <table class="fs-7" style="width:100%; color:#CCC">
+          <tr>
+            <td>디렉터</td>
+            <td>노제현</td>
+          </tr>
+          <tr>
+            <td>공동창작</td>
+            <td>강민지, 노제현, 양석진, 천영돈</td>
+          </tr>
+          <tr>
+            <td>장소리서치/글</td>
+            <td>이경민</td>
+          </tr>
+          <tr>
+            <td>영상감독</td>
+            <td>박용호</td>
+          </tr>
+          <tr>
+            <td>사운드디자인</td>
+            <td>곽다원</td>
+          </tr>
+          <tr>
+            <td>프로듀서/글</td>
+            <td>임현진</td>
+          </tr>
+          <tr>
+            <td>웹개발</td>
+            <td>조준현</td>
+          </tr>
+          <tr>
+            <td> &nbsp; </td>
+          </tr>
+
+          <tr>
+            <td>Director</td>
+            <td>Jeahyun Nho</td>
+          </tr>
+          <tr>
+            <td>Co-creation</td>
+            <td>Minji Kang, Jeahyun Nho, Seokjin Yang, Youngdon Chun</td>
+          </tr>
+          <tr>
+            <td>Place Research/Text</td>
+            <td>Kyungmin Lee</td>
+          </tr>
+          <tr>
+            <td>Videographer</td>
+            <td>Yongho Park</td>
+          </tr>
+          <tr>
+            <td>Sound Design</td>
+            <td>Dawon Kwak</td>
+          </tr>
+          <tr>
+            <td>Producer/Text</td>
+            <td>Jin Yim</td>
+          </tr>
+          <tr>
+            <td>Web</td>
+            <td>Junhyun Cho</td>
+          </tr>
+
+        </table>
+
+
+
+
+        <br><br>
+        <div style="display: flex; justify-content: space-evenly; align-items: center;">
+          <img src="/logo/online-bw.png" style="width: 80px; height: auto; opacity: 0.7;">
+          <img src="/logo/arko-bw.png" style="width: 70px; height: auto; opacity: 0.7;">
+          <img src="/logo/moon-bw.png" style="width: 100px; height: auto; opacity: 0.7;">
+        </div>
+        <br>
+
+
+        <p class="fs-7" style="font-size:0.8rem; color:#AAA"> 2023년 문화체육관광부와 한국문화예술위원회의 ‘온라인미디어 예술활동 지원사업’의 지원을 받아
+          제작되었습니다. </p>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+{{/*
+<script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script> */}}
+
+<script>
+  (g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })({
+
+    key: "AIzaSyAYcjpCTG8LexYskRI6r7aWVNW42h9hIE4",
+    v: "weekly",
+    // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
+    // Add other bootstrap parameters as needed, using camel case.
+  });
+
+
+</script>
+
+{{/*
+<script type="module" src="js/main.js">  </script> */}}
+{{ partialCached "head/js.html" . }}
+
+{{ end }}

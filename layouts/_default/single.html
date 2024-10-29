@@ -1,0 +1,71 @@
+{{ define "main" }}
+{{/* <h1>{{ .Title }}</h1> */}}
+<br>
+
+
+<div class="container ">
+  <div class="row">
+    <div class="col-8">
+      <div id=" map-title">
+        <h2> {{ .Title }}</h2>
+      </div>
+
+
+    </div>
+    <div class="col-4 d-flex justify-content-end">
+
+      <div id="menu-button">
+
+        <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
+          style="background: none; border: none; color: white;">
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+          </svg>
+        </button>
+
+      </div>
+    </div>
+
+    &nbsp
+    <style>
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+
+    {{ .Content }}
+  </div>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
+  style="width : 300px; max-width: 50%; background-color : black; color:#DDD">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Menu</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href=' {{ "" | relURL }} '>Home</a>
+      </li>
+      {{/* <li class="nav-item">
+        <a class="nav-link" href=' {{"poetic" | relURL }} '>Poetic Map Project</a>
+      </li> */}}
+      <li class="nav-item">
+        <a class="nav-link" href=' {{"about" | relURL }} '>About iMoment</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<br>
+
+
+
+{{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+
+{{ end }}
