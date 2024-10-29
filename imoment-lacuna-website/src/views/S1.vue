@@ -25,7 +25,7 @@
                 'visible': showButton 
             }"
         >
-            관객들이 준비되면 눌러주세요
+            PLAY
         </button>
     </div>
 </template>
@@ -63,7 +63,6 @@ export default {
         async handleButtonClick() {
 
             this.isLeaving = true;
-            
             try {
                 const audio = this.$root.$refs.S1;
                 audioService.init(audio);
@@ -125,7 +124,7 @@ export default {
         },
 
         async showItem() {
-            if (this.isLeaving) return;
+            //if (this.isLeaving) return;
 
             // 랜덤 포지션과 인덱스 가져오기
             const { position, index } = this.getRandomPosition();
@@ -183,11 +182,7 @@ export default {
             
             // 2초마다 새 아이템 생성
             const intervalId = setInterval(() => {
-                if (this.isLeaving) {
-                    // 페이지를 떠날 때 interval 정리
-                    clearInterval(intervalId);
-                    return;
-                }
+                
                 this.showItem();
             }, 3000);
 
@@ -227,7 +222,7 @@ export default {
 .action-button {
     width: 50%;
     aspect-ratio: 5 / 1;
-    background-color: #FFFFFF;
+    background-color: #FFFFFF00;
     color: black;
     border: 1px solid black;
     border-radius: 8px;
@@ -281,13 +276,5 @@ export default {
     height: auto;
 }
 
-/* 테스트 이미지를 위한 스타일 추가 */
-.test-image {
-    position: absolute;
-    width: 100px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0.5;
-}
+
 </style>

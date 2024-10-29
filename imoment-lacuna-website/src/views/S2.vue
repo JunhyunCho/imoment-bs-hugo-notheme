@@ -63,7 +63,6 @@ export default {
         async handleButtonClick() {
 
             this.isLeaving = true;
-            
             try {
                 const audio = this.$root.$refs.S2;
                 audioService.init(audio);
@@ -81,8 +80,7 @@ export default {
         },
         
         handleAudioEnd() {
-            // 4_map_single 뷰로 이동할 때 숫자 넘기기
-            const currentIndex = 2 ; 
+            const currentIndex = 2;
             this.$router.push({ path: '/4_map_single', query: { currentIndex } });
         },
 
@@ -126,7 +124,7 @@ export default {
         },
 
         async showItem() {
-            if (this.isLeaving) return;
+            //if (this.isLeaving) return;
 
             // 랜덤 포지션과 인덱스 가져오기
             const { position, index } = this.getRandomPosition();
@@ -184,11 +182,7 @@ export default {
             
             // 2초마다 새 아이템 생성
             const intervalId = setInterval(() => {
-                if (this.isLeaving) {
-                    // 페이지를 떠날 때 interval 정리
-                    clearInterval(intervalId);
-                    return;
-                }
+                
                 this.showItem();
             }, 3000);
 
@@ -282,13 +276,5 @@ export default {
     height: auto;
 }
 
-/* 테스트 이미지를 위한 스타일 추가 */
-.test-image {
-    position: absolute;
-    width: 100px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0.5;
-}
+
 </style>
