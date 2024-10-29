@@ -53,20 +53,24 @@ export default {
         setTimeout(async () => {
             try {
                 const audio = this.$root.$refs.mailFromK;
-                console.log('Audio element:', audio);
                 
-                // 오디오 초기화 및 재생
-                audioService.init(audio);
-                audioService.setVolume(0.8);
+                // 자동 재생 시도
+                await audio.play().then(() => {
+                    // 재생 성공시에만 초기화
+                    audioService.init(audio);
+                    audioService.setVolume(0.8);
+                    audio.addEventListener('ended', this.handleAudioEnd);
+                    
+                    console.log('3_2_map.vue - 나레이션 재생 시작');
+                    this.showMail = false;
+                    this.startTextSequence();
+                }).catch(error => {
+                    console.error('mounted: audio.play() 오디오 재생 실패:', error);
+                    // cleanup 호출하지 않음
+                    this.showMail = false;
+                    this.startTextSequence();
+                });
                 
-                // ended 이벤트는 audio 엘리먼트에 직접 추가
-                audio.addEventListener('ended', this.handleAudioEnd);
-                
-                await audio.play();
-                console.log('3_2_map.vue - 나레이션 재생 시작');
-                
-                this.showMail = false; //굳이 지도 표시 안해도 될듯. 
-                this.startTextSequence();
             } catch (error) {
                 console.error('3_2_map.vue - 오디오 재생 실패:', error);
                 this.showMail = false;
@@ -75,10 +79,13 @@ export default {
         }, 1000);
     },
     beforeUnmount() {
-        const audio = this.$root.$refs.mailFromK;  // mailFromK로 수정
+        const audio = this.$root.$refs.mailFromK;
         if (audio) {
             audio.removeEventListener('ended', this.handleAudioEnd);
-            audioService.cleanup();  // audioService cleanup 호출
+            // cleanup은 라우트 변경 시에만 호출
+            if (this.$route.name !== this.$options.name) {
+                audioService.cleanup();
+            }
         }
     },
     methods: {

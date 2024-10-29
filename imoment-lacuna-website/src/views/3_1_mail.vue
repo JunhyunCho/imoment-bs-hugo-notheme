@@ -34,47 +34,26 @@ export default {
             try {
                 const audio = this.$root.$refs.mailBGM;
                 
-                if (!this.audioInitialized) {
+                // 자동 재생 시도
+                await audio.play().then(() => {
+                    // 재생 성공시에만 초기화
                     audioService.init(audio);
-                    this.audioInitialized = true;
-                }
-
-                audioService.setVolume(0.8);
-                
-                await audio.play();
-                console.log('3_1_mail.vue - 알림음 재생 시작');
-                
-                this.showMail = true;
-                
-                setTimeout(() => {
-                    this.showText = true;
+                    audioService.setVolume(0.8);
+                    console.log('3_1_mail.vue - 알림음 재생 시작');
                     
-                    setTimeout(() => {
-                        this.showMail = false;
-                        this.showText = false;
-                        
-                        setTimeout(() => {
-                            this.$router.push('/3_2_map');
-                        }, 1000);
-                    }, 3000);
-                }, 1000);
+                    this.showMail = true;
+                    this.startSequence();
+                }).catch(error => {
+                    console.error('mounted: audio.play() 오디오 재생 실패:', error);
+                    // cleanup 호출하지 않고 UI 표시만 진행
+                    this.showMail = true;
+                    this.startSequence();
+                });
                 
             } catch (error) {
                 console.error('3_1_mail.vue - 오디오 재생 실패:', error);
                 this.showMail = true;
-                
-                setTimeout(() => {
-                    this.showText = true;
-                    
-                    setTimeout(() => {
-                        this.showMail = false;
-                        this.showText = false;
-                        
-                        setTimeout(() => {
-                            this.$router.push('/3_2_map');
-                        }, 1000);
-                    }, 3000);
-                }, 1000);
+                this.startSequence();
             }
         }, 1000);
     },
@@ -93,6 +72,20 @@ export default {
                 audio.currentTime = 0;
             }
             this.$router.push('/3_2_map');
+        },
+        startSequence() {
+            setTimeout(() => {
+                this.showText = true;
+                
+                setTimeout(() => {
+                    this.showMail = false;
+                    this.showText = false;
+                    
+                    setTimeout(() => {
+                        this.$router.push('/3_2_map');
+                    }, 1000);
+                }, 3000);
+            }, 1000);
         }
     }
 }
