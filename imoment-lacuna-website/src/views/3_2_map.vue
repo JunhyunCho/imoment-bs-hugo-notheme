@@ -32,7 +32,7 @@ export default {
                 '잉여의 도시는 인간의 도시와 공존하기 때문에\n저희의 모습을 쉽게 발견하기는 어려웠을 수도 있어요.',
                 '이제 우리의 이야기를 들려드릴께요',
                 '서계동 곳곳에 우리가 남긴 이야기의 흔적이 존재합니다.',
-                '지도에서 보이는 표시르 따라 우리를 찾으러 오세요'
+                '지도에서 보이는 표시를 따라 우리를 찾으러 오세요'
             ],
             currentText: '',
             currentIndex: 0, 
@@ -133,8 +133,10 @@ export default {
     background-repeat: no-repeat;
     overflow: hidden;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-bottom: 20vh;
 }
 
 .mail-image {
@@ -147,7 +149,8 @@ export default {
     white-space: pre-line;
     line-height: 1.8;
     font-family: 'Noto Sans KR', sans-serif;
-    margin-top: 2rem;
+    width: 100%;
+    padding: 0 20px;
 }
 
 .fade-enter-active,

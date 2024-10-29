@@ -4,11 +4,21 @@
         <transition name="fade">
             <div v-if="currentText" class="text">{{ currentText }}</div>
         </transition>
+        <transition name="fade">
+            <button 
+                v-if="showPlayButton" 
+                @click="handlePlayButtonClick" 
+                class="play-button"
+            >
+                PLAY
+            </button>
+        </transition>
     </div>
 </template>
 
 <script>
 import audioService from '../services/audioService';
+import NoSleep from 'nosleep.js';
 
 export default {
     name: 'Scene4View',
@@ -33,7 +43,7 @@ export default {
                 '셋째, 잉여의 도시에서 길을 잃는다면\n라쿠나 직원을 찾아주세요.',
                 '넷째, 도시의 틈에는 이곳에 머물고 있는\n자들의 흔적이 존재합니다.',
                 '여러분은 이제 그 흔적을 발견하실 수 있는데요.\n거리를 거닐다 표식을 발견하면 QR을 찍어주세요.',
-                '자 이제 잉여의 도시에 진입하겠습니다.',
+                '자, 이제 잉여의 도시에 진입하겠습니다.',
                 '떠나세요. 잉여의 도시로.'
             ],
             currentIndex: 0,
@@ -57,35 +67,43 @@ export default {
                 11000,  // 3:07 - 3:18
                 10000,  // 3:18 - 3:28
                 15000,  // 3:28 - 3:43
-                5000    // 3:43 - end
-            ]
+                7000    // 3:43 - end
+            ],
+            showPlayButton: false,
+            noSleep: null
         }
     },
     mounted() {
+        this.noSleep = new NoSleep();
+        this.enableWakeLock();
+        this.showPlayButton = true;
+
         try {
             const audio = this.$root.$refs.S0;
             
-            // 오디오 초기화 및 재생
-            audioService.init(audio);
-            audioService.setVolume(0.8);
-            
-            // 오디오 재생
-            audio.play().catch(error => {
-                console.error('오디오 재생 실패:', error);
+            // 자동 재생 시도
+            audio.play().then(() => {
+                // 재생 성공시에만 초기화
+                audioService.init(audio);
+                audioService.setVolume(0.8);
+                this.startTextSequence();
+                this.showPlayButton = false;
+            }).catch(error => {
+                console.error('mounted: audio.play() 오디오 재생 실패:', error);
+                // cleanup 호출하지 않음
+                this.showPlayButton = true;
             });
-
-            // 텍스트 시퀀스 시작
-            this.startTextSequence();
             
         } catch (error) {
             console.error('3_narration.vue - 오디오 재생 실패:', error);
-            this.startTextSequence();
+            this.showPlayButton = true;
         }
     },
     methods: {
         startTextSequence() {
             const showText = () => {
                 if (this.currentIndex >= this.texts.length) {
+                    this.$router.push('/3_1_mail');
                     return;
                 }
                 
@@ -106,10 +124,41 @@ export default {
         handleTestButtonClick() {
             audioService.cleanup();
             this.$router.push('/3_1_mail');
+        },
+        async handlePlayButtonClick() {
+            try {
+                const audio = this.$root.$refs.S0;
+                
+                // 이전 연결이 있다면 제거
+                if (audio.mediaElementSource) {
+                    audio.mediaElementSource.disconnect();
+                    delete audio.mediaElementSource;
+                }
+                
+                // 오디오 초기화
+                audioService.init(audio);
+                audioService.setVolume(0.8);
+                
+                await audio.play();
+                this.showPlayButton = false;
+                this.startTextSequence();
+                this.enableWakeLock();
+            } catch (error) {
+                console.error('재생 버튼 클릭 후 오디오 재생 실패:', error);
+                // 에러 발생시에도 cleanup 호출하지 않음
+            }
+        },
+        enableWakeLock() {
+            document.addEventListener('click', () => {
+                this.noSleep.enable();
+            }, { once: true });
         }
     },
     beforeUnmount() {
         audioService.cleanup();
+        if (this.noSleep) {
+            this.noSleep.disable();
+        }
     }
 }
 </script>
@@ -129,11 +178,15 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-bottom: 20vh;
 }
 
 .text {
     font-size: 1.3rem;
     text-align: center;
+    white-space: pre-line;
+    line-height: 1.8;
+    font-family: 'Noto Sans KR', sans-serif;
     width: 100%;
     padding: 0 20px;
 }
@@ -160,5 +213,25 @@ export default {
 
 .test-button:hover {
     background: rgba(255, 255, 255, 0.1);
+}
+
+.play-button {
+    width: 50vw;
+    aspect-ratio: 4 / 1;  /* 가로:세로 = 2:1 비율 */
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 8px;
+    color: black;
+    font-size: 1.2rem;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+
+.play-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 </style>

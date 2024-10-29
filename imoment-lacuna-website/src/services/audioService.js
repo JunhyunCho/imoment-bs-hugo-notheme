@@ -8,7 +8,7 @@ class AudioService {
     }
 
     init(audioElement) {
-        if (this.isInitialized) return;
+        this.cleanup();
 
         this.audioElement = audioElement;
         this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
