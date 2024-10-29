@@ -3,6 +3,7 @@
       <div class="content">
           <h3 class="instruction-text">
               본 공연은 소리와 영상이 함께 제공됩니다.<br>
+              이어폰을 착용하시고 <br>
               아래 버튼을 눌러서 소리가 적절히 들리게끔<br>
               볼륨을 조절해주세요.
           </h3>

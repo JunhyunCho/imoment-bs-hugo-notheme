@@ -19,7 +19,8 @@ import S6 from './views/S6.vue'
 import S7 from './views/S7.vue'
 import S8 from './views/S8.vue'
 import S5 from './views/S5.vue'
-
+import S_A from './views/S_A.vue'
+import S_V from './views/S_V.vue'
 const router = createRouter({
     history: createWebHashHistory(process.env.NODE_ENV === 'production' ? '/lacuna/' : '/lacuna/'),
     routes: [
@@ -41,6 +42,8 @@ const router = createRouter({
         { path: '/S6', component: S6 },
         { path: '/S7', component: S7 },
         { path: '/S8', component: S8 },
+        { path: '/S_A', component: S_A },
+        { path: '/S_V', component: S_V },
     ]
 })
 
