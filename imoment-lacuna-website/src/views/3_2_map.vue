@@ -23,34 +23,45 @@ export default {
     name: 'Scene4_2View',
     data() {
         return {
-            audioInitialized: false,
             showMail: false,
             texts: [
-                '안녕하세요. 잉여의 도시에 오신 여러분.',
-                '저는 k라고 합니다. \n제가 잉여의 도시로 이주한지 벌써 많은 시간이 흘렀네요.',
-                '잉여의 도시는 인간의 도시와 공존하기 때문에',
-                '저희의 모습을 쉽게 발견하기는 어려웠을 수도 있어요.',
-                '이곳에 머물고 있는 저와 저의 이웃들을 찾아보시고 \n또 저희가 남긴 흔적들을 발견해보세요.'
+                ' ',
+                '안녕하세요.\nK입니다.',
+                '잉여의 도시에 오신 여러분을 환영합니다.',
+                '이곳에서 저희는 보이지 않는 틈에서 \n자리를 지키며 살고 있습니다.',
+                '잉여의 도시는 인간의 도시와 공존하기 때문에\n저희의 모습을 쉽게 발견하기는 어려웠을 수도 있어요.',
+                '이제 우리의 이야기를 들려드릴께요',
+                '서계동 곳곳에 우리가 남긴 이야기의 흔적이 존재합니다.',
+                '지도에서 보이는 표시을 따라 우리를 찾으러 오세요'
             ],
             currentText: '',
-            currentIndex: 0,
+            currentIndex: 0, 
             fadeTransitionTime: 1000,
-            displayDurations: [3000, 3000, 3000, 3000, 3000]
+            displayDurations: [
+                8000,   // 0:00 - 0:09
+                3000,   // 0:09 - 0:12
+                3000,   // 0:12 - 0:16
+                6000,   // 0:16 - 0:23
+                8000,   // 0:23 - 0:32
+                2000,   // 0:32 - 0:35
+                5000,    // 0:35 - 0:41
+                4000,   // 0:41 - 0:45
+            ]
         }
     },
     mounted() {
         setTimeout(async () => {
             try {
-                const audio = this.$root.$refs.trainBGM;
+                const audio = this.$root.$refs.mailFromK;
+                console.log('Audio element:', audio);
                 
-                if (!this.audioInitialized) {
-                    audioService.init(audio);
-                    this.audioInitialized = true;
-                }
-
-                audio.addEventListener('ended', this.handleAudioEnd);
-
+                // 오디오 초기화 및 재생
+                audioService.init(audio);
                 audioService.setVolume(0.8);
+                
+                // ended 이벤트는 audio 엘리먼트에 직접 추가
+                audio.addEventListener('ended', this.handleAudioEnd);
+                
                 await audio.play();
                 console.log('3_2_map.vue - 나레이션 재생 시작');
                 
@@ -64,11 +75,10 @@ export default {
         }, 1000);
     },
     beforeUnmount() {
-        const audio = this.$root.$refs.mapBGM;
+        const audio = this.$root.$refs.mailFromK;  // mailFromK로 수정
         if (audio) {
             audio.removeEventListener('ended', this.handleAudioEnd);
-            audio.pause();
-            audio.currentTime = 0;
+            audioService.cleanup();  // audioService cleanup 호출
         }
     },
     methods: {
@@ -92,12 +102,19 @@ export default {
             
             showText();
         },
-        handleAudioEnd() {
+        async handleAudioEnd() {
             console.log('나레이션 재생 완료');
-            setTimeout(() => {
-                const currentIndex = 0 ; 
-                this.$router.push({ path: '/4_map_single', query: { currentIndex } });
-            }, 1000);
+            try {
+                await audioService.fadeOut(1);  // 1초 동안 페이드아웃
+                setTimeout(() => {
+                    const currentIndex = 0;
+                    this.$router.push({ path: '/4_map_single', query: { currentIndex } });
+                }, 1000);
+            } catch (error) {
+                console.error('페이드아웃 실패:', error);
+                // 에러가 발생해도 다음 화면으로 이동
+                this.$router.push({ path: '/4_map_single', query: { currentIndex: 0 } });
+            }
         }
     }
 }
@@ -119,7 +136,7 @@ export default {
 }
 
 .text {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: center;
     white-space: pre-line;
     line-height: 1.8;

@@ -13,10 +13,12 @@ import _3_2_map from './views/3_2_map.vue'
 import _4_map_single from './views/4_map_single.vue'
 import S1 from './views/S1.vue'
 import S2 from './views/S2.vue'
+import S3 from './views/S3.vue'
 import S4 from './views/S4.vue'
 import S6 from './views/S6.vue'
 import S7 from './views/S7.vue'
 import S8 from './views/S8.vue'
+import S5 from './views/S5.vue'
 
 const router = createRouter({
     history: createWebHashHistory(process.env.NODE_ENV === 'production' ? '/lacuna/' : '/lacuna/'),
@@ -33,7 +35,9 @@ const router = createRouter({
         { path: '/4_map_single', component: _4_map_single },
         { path: '/S1', component: S1 },
         { path: '/S2', component: S2 },
+        { path: '/S3', component: S3 },
         { path: '/S4', component: S4 },
+        { path: '/S5', component: S5 },
         { path: '/S6', component: S6 },
         { path: '/S7', component: S7 },
         { path: '/S8', component: S8 },

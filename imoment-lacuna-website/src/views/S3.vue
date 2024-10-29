@@ -5,7 +5,7 @@
             class="video-player"
             @ended="handleVideoEnd"
         >
-            <source src="/lacuna/video/vid_1.mp4" type="video/mp4">
+            <source src="/lacuna/video/S3.mp4" type="video/mp4">
             브라우저가 비디오를 지원하지 않습니다.
         </video>
         <button 
@@ -20,7 +20,7 @@
 
 <script>
 export default {
-    name: 'Scene5View',
+    name: 'Scene3View',
     data() {
         return {
             isPlaying: false
@@ -28,7 +28,7 @@ export default {
     },
     methods: {
         handleVideoEnd() {
-            const currentIndex = 5;
+            const currentIndex = 3;
             this.$router.push({ 
                 path: '/4_map_single', 
                 query: { currentIndex } 
@@ -82,7 +82,6 @@ export default {
     left: 50%;
     transform: translateX(-50%);
 }
-
 .play-button:hover {
     background-color: #f0f0f0;
     border-color: #333;

@@ -82,8 +82,8 @@ export default {
         
         handleAudioEnd() {
             // 4_map_single 뷰로 이동할 때 숫자 넘기기
-            const nextIndex = 8 ; 
-            this.$router.push({ path: '/4_map_single', query: { nextIndex } });
+            const currentIndex = 8 ; 
+            this.$router.push({ path: '/4_map_single', query: { currentIndex } });
         },
 
         getRandomImageNumber() {

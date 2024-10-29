@@ -34,7 +34,6 @@ export default {
     name: 'Scene2View',
     data() {
         return {
-            audioInitialized: false,
             showFirstText: false,
             showSecondText: false,
             showButton: false,
@@ -43,13 +42,11 @@ export default {
     },
     async mounted() {
         try {
-            const audio = this.$root.$refs.mailBGM; // 기차 소리
+            const audio = this.$root.$refs.S0;
+            console.log('Audio element:', audio);
             
-            if (!this.audioInitialized) {
-                audioService.init(audio);
-                this.audioInitialized = true;
-            }
-
+            // 오디오 초기화 및 재생
+            audioService.init(audio);
             audioService.setVolume(0.8);
             await audio.play();
             console.log('2_train.vue - 기차 소리 재생 시작');
@@ -69,7 +66,7 @@ export default {
                     }, 1000);
                 }, 5000);
             }, 1000);
-
+            
         } catch (error) {
             console.error('2_train.vue - 오디오 재생 실패:', error);
         }
@@ -77,7 +74,25 @@ export default {
     methods: {
         async handleButtonClick() {
             this.isLeaving = true;
+            
+            // 오디오 페이드아웃 후 라우팅
+            const audio = this.$root.$refs.trainBGM;
+            if (audio) {
+                try {
+                    await audioService.fadeOut(1);
+                } catch (error) {
+                    console.error('오디오 페이드아웃 실패:', error);
+                }
+            }
+            
             this.$router.push('/3_narration');
+        }
+    },
+    beforeUnmount() {
+        const audio = this.$root.$refs.trainBGM;
+        if (audio) {
+            audio.pause();
+            audio.currentTime = 0;
         }
     }
 }

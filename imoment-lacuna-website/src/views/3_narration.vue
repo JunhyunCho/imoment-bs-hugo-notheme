@@ -1,20 +1,9 @@
 <template>
     <div class="text-container">
-        <!-- 테스트용 투명 버튼 추가 -->
-        <button 
-            class="test-button"
-            @click="handleTestButtonClick"
-        ></button>
-
+        <button class="test-button" @click="handleTestButtonClick"></button>
         <transition name="fade">
-            <div v-if="currentText" class="text">
-                {{ currentText }}
-            </div>
+            <div v-if="currentText" class="text">{{ currentText }}</div>
         </transition>
-        <!-- 오디오 시간 표시 -->
-        <div v-if="audioInitialized" class="time-display">
-            {{ formattedTime }}
-        </div>
     </div>
 </template>
 
@@ -25,9 +14,9 @@ export default {
     name: 'Scene4View',
     data() {
         return {
-            audioInitialized: false,
+            currentText: '',
             texts: [
-                '기차 소리가 들리면 안내원을 따라 철도원을 찾아주세요.',
+                '기차 소리가 들리면 안내원을 따라 철도원을 찾아주세요.', 
                 ' ',
                 '저마다의 이야기를 이고지고 모이는 존재들이\n정류장 앞에 줄지어 순서를 기다리고 있습니다.',
                 '떠나세요. 잉여의 도시로',
@@ -47,13 +36,12 @@ export default {
                 '자 이제 잉여의 도시에 진입하겠습니다.',
                 '떠나세요. 잉여의 도시로.'
             ],
-            currentText: '',
             currentIndex: 0,
-            fadeTransitionTime: 1000, // ms 단위
-            displayDurations: [ // 각 텍스트별 표시 시간 (ms 단위)
+            fadeTransitionTime: 1000,
+            displayDurations: [
                 10000,  // 0:00 - 0:10
                 82000,  // 0:10 - 1:32
-                7000,  // 1:32 - 1:42
+                7000,   // 1:32 - 1:42
                 7000,   // 1:42 - 1:49
                 4000,   // 1:49 - 1:53
                 3000,   // 1:53 - 1:56
@@ -70,54 +58,28 @@ export default {
                 10000,  // 3:18 - 3:28
                 15000,  // 3:28 - 3:43
                 5000    // 3:43 - end
-            ],
-            currentTime: 0
-        }
-    },
-    computed: {
-        formattedTime() {
-            const minutes = Math.floor(this.currentTime / 60);
-            const seconds = Math.floor(this.currentTime % 60);
-            return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            ]
         }
     },
     mounted() {
         try {
             const audio = this.$root.$refs.S0;
             
-            if (!this.audioInitialized) {
-                audioService.init(audio);
-                this.audioInitialized = true;
-
-                // 시간 업데이트를 위한 이벤트 리스너 추가
-                audio.addEventListener('timeupdate', () => {
-                    this.currentTime = audio.currentTime;
-                });
-            }
-
-            // 오디오 종료 이벤트 리스너 추가
-            audio.addEventListener('ended', this.handleAudioEnd);
-
+            // 오디오 초기화 및 재생
+            audioService.init(audio);
             audioService.setVolume(0.8);
-            audio.play();
-            console.log('3_narration.vue - 나레이션 재생 시작');
             
-            // 오디오 재생 시작 후 텍스트 시퀀스 시작
+            // 오디오 재생
+            audio.play().catch(error => {
+                console.error('오디오 재생 실패:', error);
+            });
+
+            // 텍스트 시퀀스 시작
             this.startTextSequence();
+            
         } catch (error) {
             console.error('3_narration.vue - 오디오 재생 실패:', error);
-            // 오디오 실패해도 텍스트는 표시
             this.startTextSequence();
-        }
-    },
-    beforeUnmount() {
-        const audio = this.$root.$refs.narrationBGM;
-        if (audio) {
-            // 이벤트 리스너 제거
-            audio.removeEventListener('timeupdate', () => {});
-            audio.removeEventListener('ended', this.handleAudioEnd);
-            audio.pause();
-            audio.currentTime = 0;
         }
     },
     methods: {
@@ -141,21 +103,13 @@ export default {
             
             showText();
         },
-        handleAudioEnd() {
-            console.log('나레이션 재생 완료');
-            // 마지막 텍스트가 표시되고 나서 1초 후에 라우팅
-
-            setTimeout(() => {
-                this.$router.push('/3_1_mail');
-            }, 1000);
-        },
         handleTestButtonClick() {
-            const audio = this.$root.$refs.narrationBGM;
-            if (audio) {
-                audio.pause();
-            }
+            audioService.cleanup();
             this.$router.push('/3_1_mail');
         }
+    },
+    beforeUnmount() {
+        audioService.cleanup();
     }
 }
 </script>
@@ -167,27 +121,15 @@ export default {
     align-items: center;
     height: 100vh;
     width: 100vw;
-    position: relative; /* 추가 */
+    position: relative;
 }
 
 .text {
     font-size: 1.5rem;
     text-align: center;
     white-space: pre-line;
-    line-height: 1.8; /* 줄간격 150% */
+    line-height: 1.8;
     font-family: 'Noto Sans KR', sans-serif;
-}
-
-.time-display {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    background-color: rgba(0, 0, 0, 0);
-    color: #cdcdcd;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 1rem;
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -198,7 +140,6 @@ export default {
     opacity: 0;
 }
 
-/* 테스트 버튼 스타일 추가 */
 .test-button {
     position: absolute;
     top: 0;
@@ -211,7 +152,6 @@ export default {
     z-index: 100;
 }
 
-/* 테스트용으로 호버 시 약간의 배경색 표시 (선택사항) */
 .test-button:hover {
     background: rgba(255, 255, 255, 0.1);
 }

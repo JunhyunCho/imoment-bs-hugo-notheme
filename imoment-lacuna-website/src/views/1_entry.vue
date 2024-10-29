@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import audioService from '../services/audioService';
+//import audioService from '../services/audioService';
 
 export default {
     name: 'HomeView',
@@ -46,7 +46,7 @@ export default {
             
             try {
                 // 3초 동안 페이드아웃
-                await audioService.fadeOut(3);
+                //await audioService.fadeOut(3);
                 
                 // 페이드아웃 완료 후 라우팅
                 this.$router.push('/3_narration');

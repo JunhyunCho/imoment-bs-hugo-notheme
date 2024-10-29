@@ -5,6 +5,9 @@
         <button @click="getCurrentLocation" class="location-button">
             현재 위치 찾기
         </button>
+        <div v-if="logMessage" class="log-display">
+            {{ logMessage }}
+        </div>
     </div>
 </template>
 
@@ -28,12 +31,12 @@ export default {
                     index: 0
                 },
                 { 
-                    lat: 37.5514451, lng: 126.9661453, 
+                    lat: 37.5514943, lng: 126.9633434, 
                     title: '시계', 
                     index: 1
                 },
                 { 
-                    lat: 37.5512333, lng: 126.9641769, 
+                    lat: 37.5511968, lng: 126.9641541, 
                     title: '우산', 
                     index: 2
                 },
@@ -49,7 +52,7 @@ export default {
                 },
                 { 
                     lat: 37.55163, lng: 126.9637, 
-                    title: '증기철도원', 
+                    title: '기찻길', 
                     index: 5
                 },
                 { 
@@ -64,11 +67,15 @@ export default {
                 },
                 { 
                     lat: 37.5513651, lng: 126.9642202, 
-                    title: '가로공원', 
+                    title: '낡은의자', 
                     index: 8
                 }
             ],
-            isFirstLocation: true // 첫 위치 추적 여부 확인용 변수 추가
+            isFirstLocation: true, // 첫 위치 추적 여부 확인용 변수 추가
+            userGroup: '',
+            currentIndex: null,
+            nextPOIIndex: null,
+            logMessage: ''
         }
     },
     methods: {
@@ -78,9 +85,9 @@ export default {
 
             // 그룹별 POI 순서 정의
             const groupSequences = {
-                A: [0, 1, 2, 3, 4, 5, 6],
-                B: [0, 7, 9, 3, 4, 5, 2, 6],
-                C: [0, 4, 5, 2, 3, 8, 6]
+                A: [0, 2, 3, 8, 5, 1, 4, 6],  // 우산->비둘기->낡은의자->기찻길->시계->너히비의자->성전
+                B: [0, 7, 4, 3, 8, 2, 6],     // 퇴적층->너히비의자->비둘기->낡은의자->우산->성전
+                C: [0, 4, 5, 2, 3, 8, 6]      // 너히비의자->기찻길->우산->비둘기->낡은의자->성전
             };
 
             const sequence = groupSequences[userGroup];
@@ -90,6 +97,12 @@ export default {
             const nextPOIIndex = currentSequenceIndex === sequence.length - 1 
                 ? sequence[0] 
                 : sequence[currentSequenceIndex + 1];
+
+            // data에 값 저장
+            this.userGroup = userGroup;
+            this.currentIndex = currentIndex;
+            this.nextPOIIndex = nextPOIIndex;
+            this.logMessage = `${userGroup} ${currentIndex} ${nextPOIIndex}`;
 
             console.log('Adding marker', userGroup, currentIndex,  nextPOIIndex);
 
@@ -274,7 +287,7 @@ export default {
     text-decoration: none;
     color: black;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    display: none; /* 홈으로 버튼 숨기기 */
+    display: none; /* 으로 버튼 숨기기 */
 }
 
 .location-button {
@@ -293,6 +306,19 @@ export default {
 
 .location-button:hover {
     background-color: #f0f0f0;
+}
+
+.log-display {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 5px;
+    font-family: monospace;
+    font-size: 14px;
+    z-index: 1000;
 }
 </style>
 
