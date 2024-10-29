@@ -199,7 +199,7 @@ export default {
             ];
 
             const displayDurations = [
-                3000, 3000, 3000, 6000, 8000, 2000, 5000, 4000
+                7000, 3000, 3000, 6000, 8000, 2000, 5000, 4000
             ];
 
             const mapContainer = document.createElement('div');
@@ -259,10 +259,6 @@ export default {
                     mapContainer.remove();
                 }, 1000);
 
-        },
-
-        handleTestButtonClick() {
-            this.$router.push('/3_1_mail');
         },
 
         enableWakeLock() {
