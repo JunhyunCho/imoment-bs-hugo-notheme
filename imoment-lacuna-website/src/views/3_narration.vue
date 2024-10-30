@@ -261,6 +261,21 @@ export default {
             document.addEventListener('click', () => {
                 this.noSleep.enable();
             }, { once: true });
+        },
+
+        handleTestButtonClick() {
+            // 오디오 정리
+            const audio = this.$root.$refs.all;
+            if (audio) {
+                audio.pause();
+                audio.currentTime = 0;
+            }
+            
+            // 다음 라우트로 이동
+            this.$router.push({ 
+                path: '/4_map_single', 
+                query: { currentIndex: 10 } 
+            });
         }
     },
     beforeUnmount() {
