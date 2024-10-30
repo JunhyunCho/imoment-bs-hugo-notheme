@@ -83,36 +83,39 @@ export default {
             const userGroup = localStorage.getItem('userGroup') || 'A';
             const currentIndex = parseInt(this.$route.query.currentIndex, 10);
 
-            // 그룹별 POI 순서 정의
-            const groupSequences = {
-                A: [0, 2, 3, 8, 5, 1, 4, 6],  // 우산->비둘기->낡은의자->기찻길->시계->너히비의자->성전
-                B: [0, 7, 4, 3, 8, 2, 6],     // 퇴적층->너히비의자->비둘기->낡은의자->우산->성전
-                C: [0, 4, 5, 2, 3, 8, 6]      // 너히비의자->기찻길->우산->비둘기->낡은의자->성전
-            };
 
-            const sequence = groupSequences[userGroup];
-            const currentSequenceIndex = sequence.indexOf(currentIndex);
-            
-            // 현재 인덱스가 시퀀스의 마지막이 아니면 다음 인덱스를, 마지막이면 첫 인덱스를 선택
-            const nextPOIIndex = currentSequenceIndex === sequence.length - 1 
-                ? sequence[0] 
-                : sequence[currentSequenceIndex + 1];
+                        // 그룹별 POI 순서 정의
+                const groupSequences = {
+                    A: [10, 0, 2, 3, 8, 5, 1, 4, 6],  // 우산->비둘기->낡은의자->기찻길->시계->너히비의자->성전
+                    B: [10, 0, 7, 4, 3, 8, 2, 6],     // 퇴적층->너히비의자->비둘기->낡은의자->우산->성전
+                    C: [10, 0, 4, 5, 2, 3, 8, 6]      // 너히비의자->기찻길->우산->비둘기->낡은의자->성전
+                };
 
-            // data에 값 저장
-            this.userGroup = userGroup;
-            this.currentIndex = currentIndex;
-            this.nextPOIIndex = nextPOIIndex;
-            this.logMessage = `${userGroup} ${currentIndex} ${nextPOIIndex}`;
+                const sequence = groupSequences[userGroup];
+                const currentSequenceIndex = sequence.indexOf(currentIndex);
+                
+                // 현재 인덱스가 시퀀스의 마지막이 아니면 다음 인덱스를, 마지막이면 첫 인덱스를 선택
+                const nextPOIIndex = currentSequenceIndex === sequence.length - 1 
+                    ? sequence[0] 
+                    : sequence[currentSequenceIndex + 1];
 
-            console.log('Adding marker', userGroup, currentIndex,  nextPOIIndex);
+                // data에 값 저장
+                this.userGroup = userGroup;
+                this.currentIndex = currentIndex;
+                this.nextPOIIndex = nextPOIIndex;
+                this.logMessage = `${userGroup} ${currentIndex} ${nextPOIIndex}`;
+
+                console.log('Adding marker', userGroup, currentIndex,  nextPOIIndex);
+ 
 
             // 기존 마커들 제거
             this.markers.forEach(marker => marker.setMap(null));
             this.markers = [];
 
             // 다음 POI 마킹
-            const poi = this.pois.find(p => p.index === nextPOIIndex);
+            const poi = this.pois[nextPOIIndex];
             if (poi) {
+                console.log('poi:', poi);
                 const marker = new google.maps.Marker({
                     position: { lat: poi.lat, lng: poi.lng },
                     map: this.map,

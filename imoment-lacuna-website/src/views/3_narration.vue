@@ -118,10 +118,10 @@ export default {
         async startMapSequence() {
             try {
                 await this.showMapUI();
-                this.$router.push({ path: '/4_map_single', query: { currentIndex: 0 } });
+                this.$router.push({ path: '/4_map_single', query: { currentIndex: 10 } });
             } catch (error) {
                 console.error('맵 시퀀스 실행 중 오류:', error);
-                this.$router.push({ path: '/4_map_single', query: { currentIndex: 0 } });
+                this.$router.push({ path: '/4_map_single', query: { currentIndex: 10 } });
             }
         },
 

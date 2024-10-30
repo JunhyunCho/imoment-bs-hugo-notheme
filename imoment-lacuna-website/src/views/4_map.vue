@@ -25,52 +25,47 @@ export default {
                 { 
                     lat: 37.5523504, lng: 126.9652729, 
                     title: '라쿠나 출입 문', 
-                    indexA: 1, indexB: 2, indexC: 3 
+                    indexA: 0, indexB: 0, indexC: 0 
                 },
                 { 
-                    lat: 37.5522074, lng: 126.9648277, 
-                    title: '철도원 관객 위치', 
-                    indexA: 2, indexB: 2, indexC: 3 
-                },
-                { 
-                    lat: 37.5520525, lng: 126.9648790, 
-                    title: '퇴적층', 
-                    indexA: 3, indexB: 2, indexC: 3 
-                },
-                { 
-                    lat: 37.5514451, lng: 126.9661453, 
+                    lat: 37.5514943, lng: 126.9633434, 
                     title: '시계', 
-                    indexA: 4, indexB: 2, indexC: 3 
+                    indexA: 1, indexB: 1, indexC: 1 
                 },
                 { 
-                    lat: 37.5513651, lng: 126.9642202, 
-                    title: '가로공원', 
-                    indexA: 5, indexB: 5, indexC: 5 
-                },
-                { 
-                    lat: 37.5512333, lng: 126.9641769, 
+                    lat: 37.5511968, lng: 126.9641541, 
                     title: '우산', 
-                    indexA: 6, indexB: 6, indexC: 6 
+                        indexA: 2, indexB: 2, indexC: 2 
                 },
                 { 
                     lat: 37.5510854, lng: 126.9640810, 
                     title: '비둘기', 
-                    indexA: 7, indexB: 7, indexC: 7 
-                },
-                { 
-                    lat: 37.55163, lng: 126.9637, 
-                    title: '증기 철도원', 
-                    indexA: 8, indexB: 8, indexC: 8 
+                    indexA: 3, indexB: 3, indexC: 3 
                 },
                 { 
                     lat: 37.55130, lng: 126.9636, 
-                    title: '의자(만리시장)', 
-                    indexA: 9, indexB: 9, indexC: 9 
+                    title: '너히비의자', 
+                    indexA: 4, indexB: 4, indexC: 4 
+                },
+                { 
+                    lat: 37.55163, lng: 126.9637, 
+                    title: '기찻길', 
+                    indexA: 5, indexB: 5, indexC: 5 
                 },
                 { 
                     lat: 37.5519488, lng: 126.9646255, 
                     title: '성전', 
-                    indexA: 10, indexB: 10, indexC: 10 
+                    indexA: 6, indexB: 6, indexC: 6 
+                },
+                { 
+                    lat: 37.5520525, lng: 126.9648790, 
+                    title: '퇴적층', 
+                    indexA: 7, indexB: 7, indexC: 7 
+                },
+                { 
+                    lat: 37.5513651, lng: 126.9642202, 
+                    title: '낡은의자', 
+                    indexA: 8, indexB: 8, indexC: 8 
                 }
             ],
             isFirstLocation: true // 첫 위치 추적 여부 확인용 변수 추가
