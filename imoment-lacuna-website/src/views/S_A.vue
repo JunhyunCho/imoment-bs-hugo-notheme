@@ -1,8 +1,9 @@
 <template>
     <div class="container">
+        <!-- 스킵 버튼 추가 -->
+        <button class="skip-button" @click="handleSkip"></button>
 
-
-        <!-- 기존 아이템 렌더링 -->
+        <!-- 기존 컨텐츠 -->
         <div v-for="item in items" :key="item.id" 
             class="item"
             :class="{ 
@@ -27,6 +28,11 @@
         >
             PLAY
         </button>
+
+        <!-- 인덱스와 타이틀 추가 -->
+        <div class="info-text">
+            {{ audioIndex }}. {{ getTitle }}
+        </div>
     </div>
 </template>
 
@@ -52,7 +58,19 @@ export default {
             currentPositionIndex: 0,
             animationInterval: null,
             audioIndex: null,
-            noSleep: null
+            noSleep: null,
+            titles: {
+                1: '기차역',
+                2: '철도원',
+                3: '우체부',
+                4: '시계공',
+                5: '재단사',
+                6: '음악가',
+                7: '사진가',
+                8: '조각가',
+                9: '화가',
+                10: '작가'
+            }
         }
     },
     mounted() {
@@ -208,7 +226,15 @@ export default {
             // 컴포넌트가 제거될 때 정리하기 위해 intervalId 저장
             this.animationInterval = intervalId;
             
-        }
+        },
+
+        // 새로운 스킵 메서드 추가
+        handleSkip() {
+            if (this.animationInterval) {
+                clearInterval(this.animationInterval);
+            }
+            this.handleAudioEnd();
+        },
     },
     beforeUnmount() {
         const audio = this.$root.$refs.trainBGM;
@@ -224,6 +250,11 @@ export default {
         // NoSleep 비활성화
         if (this.noSleep) {
             this.noSleep.disable();
+        }
+    },
+    computed: {
+        getTitle() {
+            return this.titles[this.audioIndex] || '';
         }
     }
 }
@@ -300,5 +331,33 @@ export default {
     height: auto;
 }
 
+.info-text {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    color: black;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.2);
+    font-family: 'Noto Sans KR', sans-serif;
+}
 
+.skip-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30vh;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+}
+
+/* 디버깅용 스타일 (필요시 주석 해제)
+.skip-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+} */
 </style>
