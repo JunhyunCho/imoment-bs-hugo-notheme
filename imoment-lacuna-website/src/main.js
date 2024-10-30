@@ -22,6 +22,7 @@ import S8 from './views/S8.vue'
 import S5 from './views/S5.vue'
 import S_A from './views/S_A.vue'
 import S_V from './views/S_V.vue'
+import shortcut from './views/shortcut.vue'
 const router = createRouter({
     history: createWebHashHistory(process.env.NODE_ENV === 'production' ? '/lacuna/' : '/lacuna/'),
     routes: [
@@ -46,6 +47,7 @@ const router = createRouter({
         { path: '/S8', component: S8 },
         { path: '/S_A', component: S_A },
         { path: '/S_V', component: S_V },
+        { path: '/shortcut', component: shortcut },
     ]
 })
 
