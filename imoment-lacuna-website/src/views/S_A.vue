@@ -271,7 +271,7 @@ export default {
 
             if (document.visibilityState === 'hidden' && this.currentAudio) {
                 // 화면을 벗어날 때
-                this.currentAudio.pause();
+               // this.currentAudio.pause();
                 this.showResumeButton = true;
             }
         },
