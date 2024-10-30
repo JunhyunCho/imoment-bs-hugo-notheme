@@ -86,6 +86,9 @@ export default {
         }, 1000);
 
         this.startItemAnimation();
+
+        // visibility 변경 이벤트 리스너 추가
+        document.addEventListener('visibilitychange', this.handleVisibilityChange);
     },
     methods: {
         enableWakeLock() {
@@ -99,12 +102,14 @@ export default {
             
             try {
                 const audio = this.$root.$refs[`S${this.audioIndex}`];
+                this.currentAudio = audio;  // 현재 오디오 저장
                 audioService.init(audio);
                 audioService.setVolume(0.8);
                 
                 audio.addEventListener('ended', this.handleAudioEnd);
                 
                 await audio.play();
+                this.isAudioPlaying = true;  // 재생 상태 표시
                 console.log('오디오 재생 성공');
                 this.enableWakeLock();
 
@@ -115,6 +120,7 @@ export default {
         },
         
         handleAudioEnd() {
+            this.isAudioPlaying = false;  // 재생 상태 업데이트
             this.isLeaving = true;
             const currentIndex = this.audioIndex;
             this.$router.push({ 
@@ -235,7 +241,22 @@ export default {
             if (this.animationInterval) {
                 clearInterval(this.animationInterval);
             }
+            // 오디오가 재생 중이면 중지
+            if (this.currentAudio) {
+                this.currentAudio.pause();
+                this.currentAudio.currentTime = 0;
+            }
             this.handleAudioEnd();
+        },
+
+        // visibility 변경 핸들러 추가
+        handleVisibilityChange() {
+            if (document.visibilityState === 'visible' && this.isAudioPlaying && this.currentAudio) {
+                // 페이지가 다시 보이고, 이전에 재생 중이었다면 다시 재생
+                this.currentAudio.play().catch(error => {
+                    console.error('오디오 재시작 실패:', error);
+                });
+            }
         },
     },
     beforeUnmount() {
@@ -253,6 +274,12 @@ export default {
         if (this.noSleep) {
             this.noSleep.disable();
         }
+
+        // visibility 이벤트 리스너 제거
+        document.removeEventListener('visibilitychange', this.handleVisibilityChange);
+        
+        this.isAudioPlaying = false;
+        this.currentAudio = null;
     },
     computed: {
         getTitle() {
@@ -358,7 +385,7 @@ export default {
     z-index: 100;
 }
 
-/* ��버깅용 스타일 (필요시 주석 해제)
+/* 버깅용 스타일 (필요시 주석 해제)
 .skip-button:hover {
     background: rgba(255, 255, 255, 0.1);
 } */
