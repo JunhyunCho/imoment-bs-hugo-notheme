@@ -25,47 +25,47 @@ export default {
                 { 
                     lat: 37.5523504, lng: 126.9652729, 
                     title: '라쿠나 출입 문', 
-                    indexA: 0, indexB: 0, indexC: 0 
+                    index: 0
                 },
                 { 
-                    lat: 37.5514943, lng: 126.9633434, 
+                    lat: 37.5510769, lng: 126.9635697, 
                     title: '시계', 
-                    indexA: 1, indexB: 1, indexC: 1 
+                    index: 1
                 },
                 { 
-                    lat: 37.5511968, lng: 126.9641541, 
+                    lat: 37.5512088, lng: 126.9641548, 
                     title: '우산', 
-                        indexA: 2, indexB: 2, indexC: 2 
+                    index: 2
                 },
                 { 
-                    lat: 37.5510854, lng: 126.9640810, 
+                    lat: 37.5510527, lng: 126.9640948, 
                     title: '비둘기', 
-                    indexA: 3, indexB: 3, indexC: 3 
+                    index: 3
                 },
                 { 
-                    lat: 37.55130, lng: 126.9636, 
+                    lat: 37.5511070, lng: 126.9641643, 
                     title: '너히비의자', 
-                    indexA: 4, indexB: 4, indexC: 4 
+                    index: 4
                 },
                 { 
-                    lat: 37.55163, lng: 126.9637, 
+                    lat: 37.5514419, lng: 126.9641430, 
                     title: '기찻길', 
-                    indexA: 5, indexB: 5, indexC: 5 
+                    index: 5
                 },
                 { 
-                    lat: 37.5519488, lng: 126.9646255, 
+                    lat: 37.5518265, lng: 126.9642855, 
                     title: '성전', 
-                    indexA: 6, indexB: 6, indexC: 6 
+                    index: 6
                 },
                 { 
-                    lat: 37.5520525, lng: 126.9648790, 
+                    lat: 37.5521822, lng: 126.9645926, 
                     title: '퇴적층', 
-                    indexA: 7, indexB: 7, indexC: 7 
+                    index: 7
                 },
                 { 
-                    lat: 37.5513651, lng: 126.9642202, 
+                    lat: 37.5513629, lng: 126.9641665, 
                     title: '낡은의자', 
-                    indexA: 8, indexB: 8, indexC: 8 
+                    index: 8
                 }
             ],
             isFirstLocation: true // 첫 위치 추적 여부 확인용 변수 추가
@@ -74,7 +74,6 @@ export default {
     methods: {
         addPOIMarkers() {
             const userGroup = localStorage.getItem('userGroup') || 'A';
-            const indexKey = `index${userGroup}`;
             
             console.log('Adding markers for group:', userGroup);
 
@@ -82,11 +81,11 @@ export default {
             this.markers.forEach(marker => marker.setMap(null));
             this.markers = [];
 
-            this.pois.forEach((poi, index) => {
+            this.pois.forEach((poi) => {
                 try {
                     // 마커 라벨 설정
                     const label = {
-                        text: String(poi[indexKey]),
+                        text: String(poi.index),
                         color: '#FFFFFF',
                         fontSize: '14px',
                         fontWeight: 'bold'
@@ -111,7 +110,7 @@ export default {
                     this.markers.push(marker);
                     //console.log(`Marker ${index} created successfully`);
                 } catch (error) {
-                    console.error(`Error creating marker ${index}:`, error);
+                    console.error(`Error creating marker ${poi.index}:`, error);
                 }
             });
 

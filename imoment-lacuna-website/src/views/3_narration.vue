@@ -279,7 +279,7 @@ export default {
             // 다음 라우트로 이동
             this.$router.push({ 
                 path: '/4_map_single', 
-                query: { currentIndex: 10 } 
+                query: { currentIndex: 0 } 
             });
         }
     },

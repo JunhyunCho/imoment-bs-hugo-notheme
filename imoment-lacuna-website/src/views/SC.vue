@@ -35,12 +35,44 @@
             </a>
         </div>
 
-        <h2>모니터링</h2>
+        <h2>전체지도</h2>
+        <a href="https://www.imoment.kr/lacuna/#/4_map" target="_blank">
+            전체 스팟 지도 보기
+        </a>
+        
+
+        <h2>그룹 설정</h2>
+        <div class="group-buttons">
+            <button @click="setGroup('A')" class="group-button">A</button>
+            <button @click="setGroup('B')" class="group-button">B</button>
+            <button @click="setGroup('C')" class="group-button">C</button>
+        </div>
+        <div class="current-group">
+            현재 그룹: {{ currentGroup }}
+        </div>
+
+        <h2>모니터링 - 오프닝 문열고 첫 QR 찍을때 보는게 좋습니다.</h2>
         <a href="https://imoment-node-server-heroku-178f19c891f3.herokuapp.com" target="_blank">
             접속자 모니터링
         </a>
     </div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            currentGroup: localStorage.getItem('userGroup') || '-'
+        }
+    },
+    methods: {
+        setGroup(group) {
+            localStorage.setItem('userGroup', group);
+            this.currentGroup = group;
+        }
+    }
+}
+</script>
 
 <style scoped>
 .container {
@@ -79,5 +111,34 @@ a {
 a:hover {
     background-color: #f5f5f5;
     border-color: #2c3e50;
+}
+
+.group-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.group-button {
+    padding: 0.5rem 2rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.group-button:hover {
+    background-color: #f5f5f5;
+    border-color: #2c3e50;
+}
+
+.current-group {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #666;
+    font-size: 1rem;
 }
 </style> 

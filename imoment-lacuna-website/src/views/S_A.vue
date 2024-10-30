@@ -284,7 +284,7 @@ export default {
         },
     },
     beforeUnmount() {
-        const audio = this.$root.$refs.trainBGM;
+        const audio = this.$root.$refs[`S${this.audioIndex}`];
         if (audio) {
             audio.removeEventListener('ended', this.handleAudioEnd);
         }
