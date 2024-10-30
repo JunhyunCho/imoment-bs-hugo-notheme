@@ -63,13 +63,15 @@ class AudioService {
             }
 
             const currentTime = this.audioContext.currentTime;
-            this.gainNode.gain.linearRampToValueAtTime(0, currentTime + duration);
+            //            this.gainNode.gain.linearRampToValueAtTime(0, currentTime + duration);
+            //this.gainNode.gain.exponentialRampToValueAtTime(0.001, currentTime + duration);  // 0은 사용할 수 없어서 0.001 사용
+            this.gainNode.gain.setTargetAtTime(0, currentTime, duration * 0.3);
 
             setTimeout(() => {
                 this.audioElement?.pause();
                 console.log('페이드아웃 완료');
                 resolve();
-            }, duration * 1000);
+            }, duration * 1000 + 500);
         });
     }
 }

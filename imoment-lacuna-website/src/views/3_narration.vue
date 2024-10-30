@@ -200,7 +200,7 @@ export default {
             ];
 
             const displayDurations = [
-                7000, 3000, 3000, 6000, 8000, 2000, 5000, 4000
+                7000, 3000, 3000, 6000, 8000, 2000, 5000, 8000
             ];
 
             const mapContainer = document.createElement('div');

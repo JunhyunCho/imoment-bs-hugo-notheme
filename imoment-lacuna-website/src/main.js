@@ -6,6 +6,7 @@ import _1_test from './views/1_test.vue'
 import _2_train from './views/2_train.vue'
 import _4_map from './views/4_map.vue'
 import _3_narration from './views/3_narration.vue'
+import _3_narration_new from './views/3_narration_new.vue'
 import _3_1_mail from './views/3_1_mail.vue'
 import Scene5 from './views/Scene5.vue'
 import Scene6 from './views/Scene6.vue'
@@ -29,6 +30,7 @@ const router = createRouter({
         { path: '/2_train', component: _2_train },
         { path: '/4_map', component: _4_map },
         { path: '/3_narration', component: _3_narration },
+        { path: '/3_narration_new', component: _3_narration_new },
         { path: '/3_1_mail', component: _3_1_mail },
         { path: '/scene5', component: Scene5 },
         { path: '/scene6', component: Scene6 },
