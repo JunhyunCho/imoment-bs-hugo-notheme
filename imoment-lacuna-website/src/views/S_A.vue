@@ -31,7 +31,7 @@
 
         <!-- 인덱스와 타이틀 추가 -->
         <div class="info-text">
-            {{ audioIndex }}. {{ getTitle }}
+            {{ audioIndex }}. {{ getTitle }} ({{ userGroup }})
         </div>
     </div>
 </template>
@@ -70,12 +70,16 @@ export default {
                 8: '조각가',
                 9: '화가',
                 10: '작가'
-            }
+            },
+            userGroup: '-'  // 기본값으로 '-' 설정
         }
     },
     mounted() {
         this.noSleep = new NoSleep();
         this.enableWakeLock();
+        
+        // userGroup 가져오기
+        this.userGroup = localStorage.getItem('userGroup') || '-';
         
         this.audioIndex = parseInt(this.$route.query.index, 10);
         
@@ -356,7 +360,7 @@ export default {
     z-index: 100;
 }
 
-/* 디버깅용 스타일 (필요시 주석 해제)
+/* ��버깅용 스타일 (필요시 주석 해제)
 .skip-button:hover {
     background: rgba(255, 255, 255, 0.1);
 } */
