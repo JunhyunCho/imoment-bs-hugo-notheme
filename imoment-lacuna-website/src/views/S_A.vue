@@ -263,7 +263,7 @@ export default {
         // visibility 변경 핸들러 추가
         handleVisibilityChange() {
             if (document.visibilityState === 'visible' && this.isAudioPlaying && this.currentAudio) {
-                // 페이지가 ���시 보이고, 이전에 재생 중이었다면 다시 재생
+                //  이전에 재생 중이었다면 다시 재생
                 this.currentAudio.play().catch(error => {
                     console.error('오디오 재시작 실패:', error);
                 });
@@ -271,8 +271,8 @@ export default {
 
             if (document.visibilityState === 'hidden' && this.currentAudio) {
                 // 화면을 벗어날 때
-               // this.currentAudio.pause();
-                this.showResumeButton = true;
+                this.currentAudio.pause();
+                //this.showResumeButton = true;
             }
         },
 
