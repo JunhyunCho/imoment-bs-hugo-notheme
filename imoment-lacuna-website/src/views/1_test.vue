@@ -15,7 +15,7 @@
           </button>
       </div>
       <div class="group-indicator">
-          {{ userGroup }} Group ({{ deviceIdPrefix }})
+          {{ userGroup }} > {{ tempGroup }} {{ deviceIdPrefix }}
       </div>
   </div>
 </template>
@@ -34,6 +34,7 @@ export default {
       return {
           audioEnabled: false,
           userGroup: null,
+          tempGroup: null,  // 임시 그룹 저장용
           deviceIdPrefix: '-'  // deviceId 앞 4자리 저장용
       }
   },
@@ -50,6 +51,9 @@ export default {
       if (deviceId) {
           this.deviceIdPrefix = deviceId.substring(0, 4);
       }
+
+      // 이미 저장된 userGroup이 있다면 불러오기
+      this.userGroup = localStorage.getItem('userGroup') || null;
   },
   beforeUnmount() {
       const audio = this.$root.$refs.testBGM;
@@ -88,9 +92,10 @@ export default {
               const data = JSON.parse(message);
               
               if (data.group) {
-                  this.userGroup = data.group;
-                  localStorage.setItem('userGroup', this.userGroup);
-                  console.log('1_entry.vue - Assigned to group:', this.userGroup);
+                  
+                      this.tempGroup = data.group;
+                      console.log('1_test.vue - Received group:', this.tempGroup);
+                  
               }
               else if (message === 'Scene1') {
                   if (this.audioEnabled) {
@@ -103,10 +108,16 @@ export default {
                   this.$router.push('/scene1');
               }
           } catch (error) {
-              console.error('1_entry.vue - 메시지 처리 중 오류:', error);
+              console.error('1_test.vue - 메시지 처리 중 오류:', error);
           }
       },
       goToEntry() {
+          // tempGroup이 있고 아직 userGroup이 없을 때만 저장
+          if (this.tempGroup && !this.userGroup) {
+              this.userGroup = this.tempGroup;
+              localStorage.setItem('userGroup', this.userGroup);
+              console.log('1_test.vue - Group saved:', this.userGroup);
+          }
           
           // 동시에 페이드아웃 시작
           const audio = this.$root.$refs.testBGM;
@@ -116,7 +127,7 @@ export default {
               });
           }
 
-          // 먼저 라우팅 시작
+          // 라우팅 시작
           this.$router.push('/1_entry');
       }
   }

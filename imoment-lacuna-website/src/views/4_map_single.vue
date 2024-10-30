@@ -8,6 +8,9 @@
         <div v-if="logMessage" class="log-display">
             {{ logMessage }}
         </div>
+        <div class="group-display">
+            {{ userGroup }}
+        </div>
     </div>
 </template>
 
@@ -86,8 +89,8 @@ export default {
 
                         // 그룹별 POI 순서 정의
                 const groupSequences = {
-                    A: [10, 0, 2, 3, 8, 5, 1, 4, 6],  // 우산->비둘기->낡은의자->기찻길->시계->너히비의자->성전
-                    B: [10, 0, 7, 4, 5, 8, 2, 6],     // 퇴적층->너히비의자->기찻길->낡은의자->우산->성전
+                    A: [10, 2, 3, 8, 5, 1, 4, 6],  // 우산->비둘기->낡은의자->기찻길->시계->너히비의자->성전
+                    B: [10, 7, 4, 5, 8, 2, 6],     // 퇴적층->너히비의자->기찻길->낡은의자->우산->성전
                     C: [10, 0, 4, 5, 2, 3, 8, 6]      // 너히비의자->기찻길->우산->비둘기->낡은의자->성전
                 };
 
@@ -103,7 +106,7 @@ export default {
                 this.userGroup = userGroup;
                 this.currentIndex = currentIndex;
                 this.nextPOIIndex = nextPOIIndex;
-                this.logMessage = `${userGroup} ${currentIndex} ${nextPOIIndex}`;
+                this.logMessage = `${currentIndex} ${nextPOIIndex}`;
 
                 console.log('Adding marker', userGroup, currentIndex,  nextPOIIndex);
  
@@ -321,6 +324,20 @@ export default {
     border-radius: 5px;
     font-family: monospace;
     font-size: 14px;
+    z-index: 1000;
+}
+
+.group-display {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 5px;
+    font-family: monospace;
+    font-size: 60px;
+    font-weight: bold;
     z-index: 1000;
 }
 </style>

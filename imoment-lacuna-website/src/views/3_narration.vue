@@ -118,10 +118,10 @@ export default {
         async startMapSequence() {
             try {
                 await this.showMapUI();
-                this.$router.push({ path: '/4_map_single', query: { currentIndex: 10 } });
+                this.$router.push({ path: '/4_map_single', query: { currentIndex: 0 } });
             } catch (error) {
                 console.error('맵 시퀀스 실행 중 오류:', error);
-                this.$router.push({ path: '/4_map_single', query: { currentIndex: 10 } });
+                this.$router.push({ path: '/4_map_single', query: { currentIndex: 0 } });
             }
         },
 
@@ -196,11 +196,13 @@ export default {
                 '잉여의 도시는 인간의 도시와 공존하기 때문에\n저희의 모습을 쉽게 발견하기는 어려웠을 수도 있어요.',
                 '이제 우리의 이야기를 들려드릴께요',
                 '서계동 곳곳에 우리가 남긴 \n이야기의 흔적이 존재합니다.',
-                '지도에서 보이는 표시를 따라 \n우리를 찾으러 오세요'
+                '지도에서 보이는 표시를 따라 \n우리를 찾으러 오세요',
+                '당신은 ' + this.userGroup + '그룹 입니다.',
+                this.userGroup + '안내자의 안내를 받으세요.',
             ];
 
             const displayDurations = [
-                6000, 3000, 3000, 6000, 8000, 2000, 5000, 8000
+                6000, 3000, 3000, 6000, 8000, 2000, 5000, 8000, 3000, 3000
             ];
 
             const mapContainer = document.createElement('div');
