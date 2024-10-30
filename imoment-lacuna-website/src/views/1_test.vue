@@ -113,7 +113,7 @@ export default {
       },
       goToEntry() {
           // tempGroup이 있고 아직 userGroup이 없을 때만 저장
-          if (this.tempGroup && !this.userGroup) {
+          if (this.tempGroup) {
               this.userGroup = this.tempGroup;
               localStorage.setItem('userGroup', this.userGroup);
               console.log('1_test.vue - Group saved:', this.userGroup);
