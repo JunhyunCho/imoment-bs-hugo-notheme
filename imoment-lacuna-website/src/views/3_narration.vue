@@ -188,6 +188,9 @@ export default {
         },
 
         async showMapUI() {
+            // userGroup 가져오기
+            const userGroup = localStorage.getItem('userGroup') || '-';
+            
             const mapTexts = [
                 ' ',
                 '안녕하세요.\nK입니다.',
@@ -197,8 +200,8 @@ export default {
                 '이제 우리의 이야기를 들려드릴께요',
                 '서계동 곳곳에 우리가 남긴 \n이야기의 흔적이 존재합니다.',
                 '지도에서 보이는 표시를 따라 \n우리를 찾으러 오세요',
-                '당신은 ' + this.userGroup + '그룹 입니다.',
-                this.userGroup + '안내자의 안내를 받으세요.',
+                '당신은 ' + userGroup + ' 그룹입니다.',
+                userGroup + ' 안내자의 안내를 받으세요.',
             ];
 
             const displayDurations = [
