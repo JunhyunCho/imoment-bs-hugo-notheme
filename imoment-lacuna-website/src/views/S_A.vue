@@ -33,6 +33,15 @@
         <div class="info-text">
             {{ audioIndex }}. {{ getTitle }} ({{ userGroup }})
         </div>
+
+        <!-- 이어듣기 버튼 추가 -->
+        <button 
+            v-if="showResumeButton" 
+            @click="handleResume" 
+            class="resume-button"
+        >
+            이어듣기
+        </button>
     </div>
 </template>
 
@@ -69,7 +78,9 @@ export default {
                 7: '퇴적층',
                 8: '낡은의자',
             },
-            userGroup: '-'  // 기본값으로 '-' 설정
+            userGroup: '-',  // 기본값으로 '-' 설정,
+            currentAudio: null, 
+            showResumeButton: false
         }
     },
     mounted() {
@@ -252,10 +263,23 @@ export default {
         // visibility 변경 핸들러 추가
         handleVisibilityChange() {
             if (document.visibilityState === 'visible' && this.isAudioPlaying && this.currentAudio) {
-                // 페이지가 다시 보이고, 이전에 재생 중이었다면 다시 재생
+                // 페이지가 ���시 보이고, 이전에 재생 중이었다면 다시 재생
                 this.currentAudio.play().catch(error => {
                     console.error('오디오 재시작 실패:', error);
                 });
+            }
+
+            if (document.visibilityState === 'hidden' && this.currentAudio) {
+                // 화면을 벗어날 때
+                this.currentAudio.pause();
+                this.showResumeButton = true;
+            }
+        },
+
+        handleResume() {
+            if (this.currentAudio) {
+                this.currentAudio.play();
+                this.showResumeButton = false;
             }
         },
     },
@@ -389,4 +413,23 @@ export default {
 .skip-button:hover {
     background: rgba(255, 255, 255, 0.1);
 } */
+
+.resume-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #FFFFFF;
+    color: black;
+    border: 1px solid black;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.resume-button:hover {
+    background-color: #f0f0f0;
+}
 </style>
