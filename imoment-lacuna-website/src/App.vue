@@ -8,7 +8,7 @@
 
         <audio ref="mailFromK" src="/lacuna/audio/mailFromK.mp3" preload="auto"></audio>
 
-        <audio ref="all" src="/lacuna/audio/all.mp3" preload="auto"></audio>
+        <audio ref="all" src="/lacuna/audio/all.m4a" preload="auto"></audio>
         <audio ref="S0" src="/lacuna/audio/S0.mp3" preload="auto"></audio>
         <audio ref="S1" src="/lacuna/audio/S1.mp3" preload="auto"></audio>
         <audio ref="S2" src="/lacuna/audio/S2.mp3" preload="auto"></audio>
