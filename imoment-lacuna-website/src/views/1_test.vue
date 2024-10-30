@@ -15,7 +15,7 @@
           </button>
       </div>
       <div class="group-indicator">
-          {{ userGroup }} Group
+          {{ userGroup }} Group ({{ deviceIdPrefix }})
       </div>
   </div>
 </template>
@@ -33,7 +33,8 @@ export default {
   data() {
       return {
           audioEnabled: false,
-          userGroup: null // 그룹 정보 저장
+          userGroup: null,
+          deviceIdPrefix: '-'  // deviceId 앞 4자리 저장용
       }
   },
   mounted() {
@@ -43,6 +44,12 @@ export default {
       // WebSocket 리스너 등록
       websocketService.addMessageListener('1_test', this.handleSceneMessage);
       websocketService.connect();
+
+      // deviceId 가져오기
+      const deviceId = localStorage.getItem('deviceId');
+      if (deviceId) {
+          this.deviceIdPrefix = deviceId.substring(0, 4);
+      }
   },
   beforeUnmount() {
       const audio = this.$root.$refs.testBGM;
@@ -160,5 +167,6 @@ export default {
     right: 20px;
     color: #808080;
     font-size: 14px;
+    font-family: monospace;  /* UUID를 고정폭 폰트로 표시 */
 }
 </style>
